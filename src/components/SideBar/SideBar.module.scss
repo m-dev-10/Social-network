@@ -1,0 +1,102 @@
+.sidebar {
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 15%;
+	border-right: 3px solid rgba(168, 168, 168, 0.4);
+	transition: all 1s ease 0s;
+	padding: 130px 10px 20px 0px;
+	& *:not(:last-child) {
+		margin: 0 0 15px 0;
+	}
+}
+
+.sidebar__move {
+	margin-left: -192px;
+}
+
+.button:checked.sidebar {
+	background-color: red;
+}
+
+.item {
+	padding: 0px 15px 0 50px;
+	position: relative;
+}
+
+.item a {
+	height: 100%;
+	color: rgb(18, 33, 93);
+	text-decoration: none;
+	font-size: 20px;
+	letter-spacing: 1px;
+	// padding: 0px 0 0px 12px;
+	&:hover {
+		color: gold;
+		transition: all 0.2s ease 0s;
+	}
+	&:focus {
+		color: rgb(51, 140, 228);
+	}
+}
+
+.link:focus.link::after {
+	content: "";
+	position: absolute;
+	top: 12px;
+	// left: 50%;
+	margin-left: 5px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: rgb(73, 166, 224);
+}
+
+.item__profile {
+	background: url("../../assets/images/SideBarImages/profileIcon.png") 10px 5px / 18px 18px no-repeat;
+}
+
+.item__messages {
+	background: url("../../assets/images/SideBarImages/messageIcon.png") 10px 5px / 18px 18px no-repeat;
+}
+
+.item__users {
+	background: url("../../assets/images/SideBarImages/usersIcon.png") 10px 5px / 18px 18px no-repeat;
+}
+
+.item__news {
+	background: url("../../assets/images/SideBarImages/newsIcon.png") 10px 5px / 18px 18px no-repeat;
+	flex: 1 1 auto;
+}
+
+.item__settings {
+	// margin-top: 50px;
+	background: url("../../assets/images/SideBarImages/settingsIcon.png") 10px 5px / 18px 18px no-repeat;
+}
+
+.checkbox {
+	display: none;
+	&:checked {
+		margin-bottom: 100px;
+	}
+}
+
+.sidebar__arrow {
+	// display: flex;
+	// align-items: flex-end;
+	// flex: 0 0 40px;
+	height: 40px;
+	width: 40px;
+	// justify-content: center;
+	position: absolute;
+	top: calc(50% + 20px);
+	right: 0%;
+	img {
+		max-width: 100%;
+		max-height: 40px;
+	}
+	&_move {
+		transform: rotate(180deg);
+	}
+}
