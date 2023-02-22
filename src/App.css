@@ -6,7 +6,7 @@
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	background-color: rgb(205, 229, 253, 0.3);
+	background-color: rgb(205, 229, 253, 0.5);
 }
 
 .AppWrapper__items {
@@ -16,5 +16,5 @@
 
 .AppWrapper__content {
 	flex: 1 1 auto;
-	padding: 130px 0 0 10px;
+	padding: 100px 0 0 10px;
 }

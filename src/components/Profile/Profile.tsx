@@ -1,10 +1,15 @@
 import React from "react";
+import MyAdverts from "./MyAdverts/MyAdverts";
 import s from './Profile.module.scss'
+import ProfilePage from "./ProfilePage/ProfilePage";
 
 
 const Profile = () => {
 	return (
-		<div className={s.profile}>Я Профайл</div>
+		<div className={s.profile}>
+			<ProfilePage />
+			<MyAdverts />
+		</div>
 	)
 }
 

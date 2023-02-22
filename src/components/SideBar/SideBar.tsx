@@ -27,7 +27,7 @@ const SideBar = () => {
 			</div>
 			<label>
 				<input onChange={() => setCheckbox(prev => !prev)} type={'checkbox'} checked={checkbox} className={s.checkbox} />
-				<div className={`${s.sidebar__arrow} ${checkbox && s.sidebar__arrow_move}`}  ><img src={arrowIconBlack} alt="" /></div>
+				<div className={`${s.sidebar__arrow} ${checkbox && s.sidebar__arrow_move}`}  ><img src={arrowIconBlack} alt="arrowSideBar" /></div>
 			</label>
 		</div>
 	)
