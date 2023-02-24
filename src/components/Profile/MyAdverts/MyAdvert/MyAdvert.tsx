@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import DefaultButton from "../../../Buttons/DefaultButton";
 import s from './MyAdvert.module.scss'
 import iconLike from '../../../../assets/images/MyPosts/iconLike.svg'
+import iconDislike from '../../../../assets/images/MyPosts/iconDislike.svg'
 
 interface Props {
 	message: string,
@@ -14,6 +15,7 @@ const MyAdvert: FC<Props> = ({ message, likes, deletePost }) => {
 
 	const [like, setLike] = useState(false)
 	const [localLike, setLocalLike] = useState(Number(likes))
+	const [localDislike, setLocalDislike] = useState(Math.ceil((Number(likes) / 2)))
 
 	const setLikeWrapper = () => {
 		if (like) {
@@ -26,6 +28,8 @@ const MyAdvert: FC<Props> = ({ message, likes, deletePost }) => {
 		setLike(prev => !prev)
 	}
 
+
+
 	return (
 		<div className={s.advert}>
 			<div className={s.advert__container}>
@@ -36,6 +40,7 @@ const MyAdvert: FC<Props> = ({ message, likes, deletePost }) => {
 						<div>{message}</div>
 						<div>{localLike}</div>
 						<div onClick={setLikeWrapper} className={`${s.iconLike} ${like ? s.iconLikeDeg : ''}`}><img src={iconLike} alt="" /></div >
+						{/* <img className={`${s.iconDislike} ${disLike ? s.iconDislikeDeg : ''}`} src={iconDislike} alt="" /> */}
 						<DefaultButton color={"red"} text={"delete post"} callback={deletePost} />
 					</div>
 				</div>
