@@ -1,16 +1,32 @@
 .advert {
-	color: red;
-	font-size: 16px;
-	padding: 100px 0px 0px 0px;
+	color: #12215d;
+	font-size: 17px;
+	// margin-top: 40px;
 }
 
-.advert__Container {
+.advert__container {
 }
-
 .advert__Item {
+	padding: 5px;
+	background-color: rgba(51, 140, 228, 0.1);
+	display: flex;
+	flex-direction: column;
+	margin-top: 40px;
+	& *:not(:last-child) {
+		margin-bottom: 5px;
+	}
+}
+
+.advert__picture {
+	margin-right: 20px;
+	flex: 0 0 60px;
+	width: 70px;
+	display: flex;
+	align-items: flex-end;
 }
 
 .advert__avatar {
-	width: 50px;
-	height: 40px;
+	max-width: 100%;
+	max-height: 60px;
+	border-radius: 50%;
 }

@@ -6,6 +6,7 @@ import { Dispatch } from 'redux'
 import { addPostAC, deletePostAC } from "../../../Redux/ActionCreators";
 import { useSelector } from "react-redux";
 import { Store } from "../../../Redux/redux-store";
+import DefaultButton from "../../Buttons/DefaultButton";
 
 
 const MyAdverts = () => {
@@ -17,9 +18,11 @@ const MyAdverts = () => {
 	const posts = useSelector((state: Store) => state.ProfilePage.PostsData)
 
 
-	const addPost = (text: string) => {
-		dispatch(addPostAC(text))
-		setText('')
+	const createAddPost = (text: string) => {
+		return () => {
+			dispatch(addPostAC(text))
+			setText('')
+		}
 	}
 
 	const createDeletePost = (id: number) => {
@@ -31,7 +34,8 @@ const MyAdverts = () => {
 	return (
 		<div className={s.adverts}>
 			<div><textarea maxLength={200} value={text} onChange={(e) => setText(e.target.value)} className={s.input__advert} placeholder="Write message..." /></div>
-			<div><button onClick={() => addPost(text)} >add post</button></div>
+			<DefaultButton text={"Add post"} callback={createAddPost(text)} />
+			{/* <div><button onClick={() => addPost(text)} >add post</button></div> */}
 			{posts.map((ad) => <MyAdvert deletePost={createDeletePost(ad.id)} message={ad.message} likes={ad.likes} />)}
 
 		</div>
