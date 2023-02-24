@@ -10,11 +10,11 @@ import { ADD_POST, DELETE_POST } from "./ActionTypes";
 
 let initialState = {
 	PostsData: [
-		{ id: 0, message: "1234567", likes: "likes: 20" },
-		{ id: 1, message: "I'am fine, thank you", likes: "likes: 30" },
-		{ id: 2, message: "Bye bye", likes: "likes: 56" },
-		{ id: 3, message: "Hi Hi", likes: "likes: 13" },
-		{ id: 4, message: "I love ps 5", likes: "likes: 28" },
+		{ id: 0, message: "1234567", likes: "20" },
+		{ id: 1, message: "I'am fine, thank you", likes: "30" },
+		{ id: 2, message: "Bye bye", likes: "56" },
+		{ id: 3, message: "Hi Hi", likes: "13" },
+		{ id: 4, message: "I love ps 5", likes: "28" },
 
 	],
 	profile: null,

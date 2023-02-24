@@ -10,10 +10,11 @@
 	padding: 5px;
 	background-color: rgba(51, 140, 228, 0.1);
 	display: flex;
-	flex-direction: column;
+	flex: 1 1 auto;
+	// flex-direction: column;
 	margin-top: 40px;
 	& *:not(:last-child) {
-		margin-bottom: 5px;
+		margin-bottom: 10px;
 	}
 }
 
@@ -22,11 +23,22 @@
 	flex: 0 0 60px;
 	width: 70px;
 	display: flex;
-	align-items: flex-end;
+	align-items: flex-start;
 }
 
 .advert__avatar {
 	max-width: 100%;
 	max-height: 60px;
 	border-radius: 50%;
+}
+
+.iconLike img {
+	width: 20px;
+	height: 20px;
+	// transform: rotate(180deg);
+}
+
+.iconLikeDeg img {
+	// transform: rotate(180deg);
+	background-color: red;
 }

@@ -6,9 +6,10 @@ interface Props {
 	text: string
 	callback: () => void
 	color?: string
+
 }
 
-const DefaultButton: FC<Props> = ({ callback, text, color = "white" }) => {
+const DefaultButton: FC<Props> = ({ callback, text, color = "white", }) => {
 
 
 	return (<div>
