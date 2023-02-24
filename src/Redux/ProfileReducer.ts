@@ -15,11 +15,7 @@ let initialState = {
 		{ id: 2, message: "Bye bye", likes: "likes: 56" },
 		{ id: 3, message: "Hi Hi", likes: "likes: 13" },
 		{ id: 4, message: "I love ps 5", likes: "likes: 28" },
-		{ id: 5, message: "Hi, how are you?", likes: "likes: 20" },
-		{ id: 6, message: "I'am fine, thank you", likes: "likes: 30" },
-		{ id: 7, message: "Bye bye", likes: "likes: 56" },
-		{ id: 8, message: "Hi Hi", likes: "likes: 13" },
-		{ id: 9, message: "I love ps 5", likes: "likes: 28" },
+
 	],
 	profile: null,
 	error: null,

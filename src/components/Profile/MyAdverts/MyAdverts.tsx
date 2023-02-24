@@ -7,6 +7,7 @@ import { addPostAC, deletePostAC } from "../../../Redux/ActionCreators";
 import { useSelector } from "react-redux";
 import { Store } from "../../../Redux/redux-store";
 
+
 const MyAdverts = () => {
 
 	const [text, setText] = useState('')
@@ -28,8 +29,8 @@ const MyAdverts = () => {
 	}
 
 	return (
-		<div>
-			<div><input value={text} onChange={(e) => setText(e.target.value)} className={s.input__advert} type="text" /></div>
+		<div className={s.adverts}>
+			<div><textarea maxLength={200} value={text} onChange={(e) => setText(e.target.value)} className={s.input__advert} placeholder="Write message..." /></div>
 			<div><button onClick={() => addPost(text)} >add post</button></div>
 			{posts.map((ad) => <MyAdvert deletePost={createDeletePost(ad.id)} message={ad.message} likes={ad.likes} />)}
 
