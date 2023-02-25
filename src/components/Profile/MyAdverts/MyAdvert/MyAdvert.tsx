@@ -14,6 +14,7 @@ const MyAdvert: FC<Props> = ({ message, likes, deletePost }) => {
 
 
 	const [like, setLike] = useState(false)
+	const [dislike, setDislike] = useState(false)
 	const [localLike, setLocalLike] = useState(Number(likes))
 	const [localDislike, setLocalDislike] = useState(Math.ceil((Number(likes) / 2)))
 
@@ -28,6 +29,17 @@ const MyAdvert: FC<Props> = ({ message, likes, deletePost }) => {
 		setLike(prev => !prev)
 	}
 
+	const setDislikeWrapper = () => {
+		if (dislike) {
+			setLocalDislike(prev => prev - 1)
+		}
+		else {
+			setLocalDislike(prev => prev + 1)
+		}
+
+		setDislike(prev => !prev)
+	}
+
 
 
 	return (
@@ -36,13 +48,12 @@ const MyAdvert: FC<Props> = ({ message, likes, deletePost }) => {
 				<div className={s.advert__Item}>
 					<div className={s.advert__picture}>	<img className={s.advert__avatar} src="https://www.perunica.ru/uploads/posts/2019-03/1552932077_1.jpg" alt="advertAvatar" /></div>
 					{/* <div><button onClick={() => deletePost()}>delete post</button></div> */}
-					<div>
+					<div className={s.advert__content}>
 						<div>{message}</div>
-						<div>{localLike}</div>
-						<div onClick={setLikeWrapper} className={`${s.iconLike} ${like ? s.iconLikeDeg : ''}`}><img src={iconLike} alt="" /></div >
-						{/* <img className={`${s.iconDislike} ${disLike ? s.iconDislikeDeg : ''}`} src={iconDislike} alt="" /> */}
-						<DefaultButton color={"red"} text={"delete post"} callback={deletePost} />
+						<div><img onClick={setLikeWrapper} className={`${s.iconLike} ${like ? s.iconLikeActive : ''}`} src={iconLike} alt="" /> Likes: {localLike}</div>
+						<div><img onClick={setDislikeWrapper} className={`${s.iconDislike} ${dislike ? s.iconDislikeActive : ''}`} src={iconDislike} alt="" /> dislikes: {localDislike}</div>
 					</div>
+					<DefaultButton color={"red"} text={"delete post"} callback={deletePost} />
 				</div>
 			</div>
 		</div >
