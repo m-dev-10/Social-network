@@ -33,7 +33,7 @@ const MyAdverts = () => {
 
 	return (
 		<div className={s.adverts}>
-			<div><textarea maxLength={200} value={text} onChange={(e) => setText(e.target.value)} className={s.input__advert} placeholder="Write message..." /></div>
+			<div><textarea maxLength={80} value={text} onChange={(e) => setText(e.target.value)} className={s.input__advert} placeholder="Write message..." /></div>
 			<DefaultButton text={"Add post"} callback={createAddPost(text)} />
 			{/* <div><button onClick={() => addPost(text)} >add post</button></div> */}
 			{posts.map((ad) => <MyAdvert deletePost={createDeletePost(ad.id)} message={ad.message} likes={ad.likes} />)}

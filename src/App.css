@@ -1,5 +1,5 @@
 .AppWrapper {
-	/* max-width: 1530px; */
+	max-width: 100%;
 	/* margin: 0 auto; */
 	/* min-height: 100%; */
 	overflow: hidden;
@@ -17,5 +17,6 @@
 .AppWrapper__content {
 	flex: 1 1 auto;
 	margin: 100px 0 0 10px;
-	overflow: auto;
+	overflow-x: hidden;
+	flex-wrap: wrap;
 }

@@ -7,9 +7,10 @@
 .advert__container {
 }
 .advert__Item {
-	padding: 5px;
+	padding: 5px 10px 5px 5px;
 	background-color: rgba(51, 140, 228, 0.1);
 	display: flex;
+	flex-wrap: wrap;
 	flex: 1 1 auto;
 	// flex-direction: column;
 	margin-top: 40px;
@@ -33,16 +34,19 @@
 }
 
 .advert__content {
+	white-space: nowrap;
+	padding-right: 30px;
+	margin-left: auto;
 	display: flex;
-	column-gap: 10px;
+	flex: 1 1 auto;
+	flex-wrap: wrap;
+	flex-direction: column;
+	// align-items: flex-end;
 }
-
-.likesBlock {
-	& *:not(:last-child) {
-		margin-right: 20px;
-	}
+.message {
+	flex: 1 1 auto;
+	white-space: nowrap;
 }
-
 .iconLike {
 	position: relative;
 	width: 20px;
@@ -53,7 +57,6 @@
 .iconLikeActive {
 	background-color: rgba(46, 139, 87, 0.5);
 	border-radius: 50%;
-	padding: 1px;
 }
 
 .iconDislike {
@@ -64,5 +67,8 @@
 .iconDislikeActive {
 	background-color: rgba(255, 0, 0, 0.6);
 	border-radius: 50%;
-	padding: 1px;
+}
+
+.button {
+	align-self: flex-end;
 }
