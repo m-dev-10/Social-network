@@ -1,0 +1,15 @@
+.dialogItem {
+	display: flex;
+	column-gap: 50px;
+}
+
+.dialogPicture {
+	height: 60px;
+	width: 70px;
+	align-items: flex-start;
+	img {
+		max-width: 100%;
+		max-height: 60px;
+		border-radius: 50%;
+	}
+}
