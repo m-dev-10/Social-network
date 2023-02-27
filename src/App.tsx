@@ -9,6 +9,7 @@ import Header from './components/Header/Header'
 import LoginForm from './components/LoginForm/LoginForm';
 import Profile from './components/Profile/Profile';
 import SideBar from './components/SideBar/SideBar';
+import Users from './components/Users/Users';
 import { authThunk } from './Redux/ThunkCreators';
 
 
@@ -30,6 +31,7 @@ const App = () => {
 					<Routes>
 						<Route path="/profile" element={<Profile />} />
 						<Route path="/dialogs" element={<Dialogs />} />
+						<Route path="/users" element={<Users />} />
 						<Route path="/login" element={<LoginForm />} />
 					</Routes>
 				</div>

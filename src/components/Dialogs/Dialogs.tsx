@@ -6,17 +6,18 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux'
 import { Store } from "../../Redux/redux-store";
+import { Navigate } from "react-router-dom";
 
 
 
 const Dialogs = () => {
 	const dispatch = useDispatch<Dispatch<any>>()
-
+	const isAuth = useSelector((state: Store) => state.auth)
 	const dialogsData = useSelector((state: Store) => state.DialogsPage.DialogsData)
 	const messagesData = useSelector((state: Store) => state.DialogsPage.MessagesData)
 
 	const [currentUser, setCurrentUser] = useState(1)
-
+	if (isAuth.isAuth === false) return <Navigate to="/login" />
 
 	return (
 		<div className={s.container}>

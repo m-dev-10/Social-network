@@ -7,6 +7,7 @@ import { Dispatch } from 'redux'
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Store } from "../../Redux/redux-store";
+import { Navigate, NavLink } from 'react-router-dom';
 
 
 const Header = () => {
@@ -22,8 +23,6 @@ const Header = () => {
 		console.log('end');
 	}
 
-
-
 	return (
 		<header className={s.header}>
 			<div className={s.container}>
@@ -31,7 +30,7 @@ const Header = () => {
 				<div>
 					<input placeholder="Enter your search phrase..." className={s.input} type="text" />
 					<img title={'Поиск...'} onClick={() => { alert('search...') }} className={s.searchIcon} src={searchIconWhite} alt="searchIcon" />
-					{isAuth.isAuth ? <div>{isAuth.email} <button onClick={unSubmit}>log out</button></div> : ""}
+					{isAuth.isAuth ? <div>{isAuth.email} <button onClick={unSubmit}>log out</button></div> : <NavLink to="/login"></NavLink>}
 
 				</div>
 			</div>
