@@ -1,10 +1,20 @@
-import React from "react";
+import React, { FC } from "react";
+import { IUser } from "../../../Types/IUser";
 
 
-const User = () => {
+interface Props {
+	user: IUser,
+}
+
+
+const User: FC<Props> = ({ user }) => {
+
+
 	return (
 		<div>
-			<div>Я юзер</div>
+			<div>{user.id}</div>
+			<div>{user.name}</div>
+			<div>{user.status}</div>
 		</div>
 	)
 }

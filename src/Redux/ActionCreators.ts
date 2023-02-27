@@ -1,4 +1,13 @@
-import { ADD_POST, DELETE_POST, ADD_MESSAGE, SET_USERS_DATA } from "./ActionTypes"
+import { IUser } from "../Types/IUser"
+import {
+	ADD_POST, DELETE_POST, ADD_MESSAGE, SET_USERS_DATA, FOLLOW,
+	SET_CURRENT_PAGE,
+	SET_TOTAL_USERS_COUNT,
+	SET_USERS,
+	TOGGLE_IS_FETCHING,
+	TOGGLE_IS_FOLLOWING_PROGRESS,
+	UNFOLLOW
+} from "./ActionTypes"
 
 
 
@@ -49,7 +58,76 @@ export const authAC = (id: number | null, email: string | null, login: string | 
 }
 
 
+//UsersPage
 
-// export const logOutAC = (id: number, email: string, login: string, isAuth: boolean): authAC => {
-// 	return { type: SET_USERS_DATA, payload: { id, email, login, isAuth } }
+
+// export type UsersAC = {
+// 	type: typeof SET_USERS,
+// 	users: Array<IUser>
+// 	pageSize: num
+// 	totalUsersCount: 0,
+// 	currentPage: 1,
+// 	isFetching: false,
+// 	followingInProgress: [],
+// 	portionSize: 0
 // }
+
+
+export type setUsersAC = {
+	type: typeof SET_USERS,
+	users: Array<IUser>
+}
+export const setUsers = (users: IUser[]): setUsersAC => {
+	return { type: SET_USERS, users }
+}
+
+
+export type followAC = {
+	type: typeof FOLLOW,
+	userId: number
+}
+export const follow = (userId: number): followAC => {
+	return { type: FOLLOW, userId }
+}
+
+export type unfollowAC = {
+	type: typeof UNFOLLOW,
+	userId: number
+}
+export const unFollowSuccess = (userId: number): unfollowAC => {
+	return { type: UNFOLLOW, userId }
+}
+
+export type setTotalUsersCountAC = {
+	type: typeof SET_TOTAL_USERS_COUNT,
+	count: number
+}
+export const setTotalUsersCount = (totalUsersCount: number): setTotalUsersCountAC => {
+	return { type: SET_TOTAL_USERS_COUNT, count: totalUsersCount }
+}
+
+export type setCurrentPageAC = {
+	type: typeof SET_CURRENT_PAGE,
+	currentPage: number
+}
+export const setCurrentPage = (currentPage: number): setCurrentPageAC => {
+	return { type: SET_CURRENT_PAGE, currentPage: currentPage }
+}
+
+export type setIsFetchingAC = {
+	type: typeof TOGGLE_IS_FETCHING,
+	isFetching: boolean
+}
+export const setIsFetching = (isFetching: boolean): setIsFetchingAC => {
+	return { type: TOGGLE_IS_FETCHING, isFetching }
+}
+
+export type toggleIsFollowingProgressAC = {
+	type: typeof TOGGLE_IS_FOLLOWING_PROGRESS,
+	isFetching: boolean
+	userId: number
+}
+export const toggleIsFollowingProgress = (isFetching: boolean, userId: number): toggleIsFollowingProgressAC => {
+	return { type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId }
+}
+

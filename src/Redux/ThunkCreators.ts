@@ -1,9 +1,10 @@
-import { authAPI } from "../API/API"
-import { authAC } from "./ActionCreators"
+import { authAPI, usersAPI } from "../API/API"
+import { authAC, setCurrentPage, setIsFetching, setTotalUsersCount, setUsers } from "./ActionCreators"
 import { AuthReducerActions } from "./AuthReducer"
 import { ActionT } from "./redux-types"
+import { UsersReducerActions } from "./UsersReducer"
 
-
+//LoginThunk
 export const authThunk = (): ActionT<AuthReducerActions> => async (dispatch) => {
 	let response = await authAPI.setAuth()
 	if (response.data.resultCode === 0) {
@@ -15,7 +16,6 @@ export const authThunk = (): ActionT<AuthReducerActions> => async (dispatch) => 
 		dispatch(authAC(id, email, login, true))
 	}
 }
-
 export const loginThunk = (login: string, password: string, rememberMe: boolean): ActionT<AuthReducerActions> => async (dispatch) => {
 	let response = await authAPI.login(login, password, rememberMe)
 	if (response.data.resultCode === 0) {
@@ -27,9 +27,6 @@ export const loginThunk = (login: string, password: string, rememberMe: boolean)
 		dispatch(authThunk())
 	}
 }
-
-
-
 export const logOutThunk = (): ActionT<AuthReducerActions> => async (dispatch) => {
 	let response = await authAPI.logout()
 	if (response.data.resultCode === 0) {
@@ -39,3 +36,40 @@ export const logOutThunk = (): ActionT<AuthReducerActions> => async (dispatch) =
 		dispatch(authAC(null, null, null, false))
 	}
 }
+
+
+//UsersThunk
+export const requestUsersThunk = (page: number, pageSize: number): ActionT<UsersReducerActions> => async (dispatch) => {
+	dispatch(setIsFetching(true))
+	let data = await usersAPI.getUsers(page, pageSize)
+	dispatch(setIsFetching(false))
+	dispatch(setUsers(data.items))
+	dispatch(setTotalUsersCount(data.totalCount))
+	dispatch(setCurrentPage(page))
+}
+
+
+
+// export const unFollow = (userId) => {
+// 	return async (dispatch) => {
+// 		dispatch(toggleIsFollowingProgress(true, userId))
+// 		let response = await usersAPI.unFollow(userId)
+// 		if (response.data.resultCode === 0) {
+// 			dispatch(unFollowSuccess(userId))
+// 		}
+// 		dispatch(toggleIsFollowingProgress(false, userId))
+// 	}
+// }
+
+
+
+// export const follow = (userId) => {
+// 	return async (dispatch) => {
+// 		dispatch(toggleIsFollowingProgress(true, userId))
+// 		let response = await usersAPI.follow(userId)
+// 		if (response.data.resultCode === 0) {
+// 			dispatch(followSuccess(userId))
+// 		}
+// 		dispatch(toggleIsFollowingProgress(false, userId))
+// 	}
+// }
