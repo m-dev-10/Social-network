@@ -86,7 +86,7 @@ export type followAC = {
 	type: typeof FOLLOW,
 	userId: number
 }
-export const follow = (userId: number): followAC => {
+export const followSuccess = (userId: number): followAC => {
 	return { type: FOLLOW, userId }
 }
 
@@ -111,7 +111,7 @@ export type setCurrentPageAC = {
 	currentPage: number
 }
 export const setCurrentPage = (currentPage: number): setCurrentPageAC => {
-	return { type: SET_CURRENT_PAGE, currentPage: currentPage }
+	return { type: SET_CURRENT_PAGE, currentPage }
 }
 
 export type setIsFetchingAC = {

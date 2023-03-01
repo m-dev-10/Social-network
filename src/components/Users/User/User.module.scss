@@ -1,0 +1,23 @@
+.user {
+	margin-bottom: 40px;
+	display: flex;
+	font-size: 15px;
+	color: rgb(1, 93, 185);
+	column-gap: 15px;
+}
+
+.userPhoto {
+	align-items: flex-start;
+	height: 60px;
+	width: 60px;
+	img {
+		max-width: 100%;
+		max-height: 60px;
+	}
+}
+
+.userInfo {
+	& *:not(:last-child) {
+		margin-bottom: 10px;
+	}
+}

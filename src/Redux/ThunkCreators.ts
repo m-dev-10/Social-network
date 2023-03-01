@@ -1,5 +1,5 @@
 import { authAPI, usersAPI } from "../API/API"
-import { authAC, setCurrentPage, setIsFetching, setTotalUsersCount, setUsers } from "./ActionCreators"
+import { authAC, followSuccess, setCurrentPage, setIsFetching, setTotalUsersCount, setUsers, toggleIsFollowingProgress, unFollowSuccess } from "./ActionCreators"
 import { AuthReducerActions } from "./AuthReducer"
 import { ActionT } from "./redux-types"
 import { UsersReducerActions } from "./UsersReducer"
@@ -50,7 +50,20 @@ export const requestUsersThunk = (page: number, pageSize: number): ActionT<Users
 
 
 
-// export const unFollow = (userId) => {
+// export const follow = (userId:number) => {
+// 	return async (dispatch) => {
+// 		dispatch(toggleIsFollowingProgress(true, userId))
+// 		let response = await usersAPI.follow(userId)
+// 		if (response.data.resultCode === 0) {
+// 			dispatch(followSuccess(userId))
+// 		}
+// 		dispatch(toggleIsFollowingProgress(false, userId))
+// 	}
+// }
+
+
+
+// export const unFollow = (userId:number) => {
 // 	return async (dispatch) => {
 // 		dispatch(toggleIsFollowingProgress(true, userId))
 // 		let response = await usersAPI.unFollow(userId)
@@ -61,15 +74,3 @@ export const requestUsersThunk = (page: number, pageSize: number): ActionT<Users
 // 	}
 // }
 
-
-
-// export const follow = (userId) => {
-// 	return async (dispatch) => {
-// 		dispatch(toggleIsFollowingProgress(true, userId))
-// 		let response = await usersAPI.follow(userId)
-// 		if (response.data.resultCode === 0) {
-// 			dispatch(followSuccess(userId))
-// 		}
-// 		dispatch(toggleIsFollowingProgress(false, userId))
-// 	}
-// }
