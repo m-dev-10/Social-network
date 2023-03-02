@@ -19,7 +19,7 @@ let initialState = {
 	currentPage: 1,
 	isFetching: false,
 	followingInProgress: [] as Array<number>,
-	portionSize: 0
+	portionSize: 10
 }
 
 

@@ -7,7 +7,7 @@ import User from "./User/User";
 import s from './Users.module.scss'
 import { Store } from "../../Redux/redux-store";
 import { setCurrentPage } from "../../Redux/ActionCreators";
-// import Paginator from "../../common/Paginator/Paginator";
+import Paginator from "../../common/Paginator/Paginator";
 
 
 
@@ -25,30 +25,27 @@ const Users = () => {
 	const currentPage = useSelector((state: Store) => state.UsersPage.currentPage)
 	const portionSize = useSelector((state: Store) => state.UsersPage.portionSize)
 
-	useEffect(
-		() => {
-			dispatch(requestUsersThunk(currentPage, 10))
-		}, []
-	)
 
-
-	const onPageChange = (p: number) => {
-		dispatch(setCurrentPage(p))
-	}
+	// useEffect(
+	// 	() => {
+	// 		dispatch(requestUsersThunk(currentPage, 10))
+	// 	}, [currentPage]
+	// )
 
 
 
-	let pagesCount = totalItemsCount / pageSize
+	// let pagesCount = Math.ceil(totalItemsCount / pageSize)
+	// let pages = []
+	// for (let i = 1; i <= pagesCount; i++) {
+	// 	pages.push(i)
+	// }
 
-	let pages = []
-	for (let i = 1; i < pagesCount; i++) {
-		pages.push(i)
-	}
+
 
 	return (
 		<div className={s.users__container}>
-			{/* <Paginator portionSize={portionSize} currentPage={currentPage} totalItemsCount={totalItemsCount} pageSize={pageSize} onPageChange={() => setCurrentPage} /> */}
-			<div>{pages.map((p) => { return <span onClick={(e) => onPageChange(p)} className={currentPage === p ? s.selectedPage : ''}>{p}</span> })}</div>
+			<div><Paginator portionSize={portionSize} currentPage={currentPage} totalItemsCount={totalItemsCount} pageSize={pageSize} /></div>
+			{/* <div>{pages.map((p) => { return <span onClick={() => dispatch(setCurrentPage(p))} className={currentPage === p ? s.selectedPage : ''}>{p}</span> })}</div> */}
 			{Users.map((u) => <User user={u} />)}
 		</div>
 	)

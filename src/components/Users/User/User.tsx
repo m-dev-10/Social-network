@@ -5,7 +5,8 @@ import s from './User.module.scss'
 import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import { followThunk, unFollowThunk } from "../../../Redux/ThunkCreators";
-
+import { useSelector } from "react-redux";
+import { Store } from "../../../Redux/redux-store";
 
 interface Props {
 	user: IUser,
@@ -15,7 +16,7 @@ interface Props {
 const User: FC<Props> = ({ user }) => {
 	const dispatch = useDispatch<Dispatch<any>>()
 
-
+	const followingInProgress = useSelector((state: Store) => state.UsersPage.followingInProgress)
 
 	return (
 		<div className={s.user}>
@@ -26,9 +27,9 @@ const User: FC<Props> = ({ user }) => {
 				<div>{user.id}</div>
 				<div>{user.name}</div>
 				<div>{user.status}</div>
-				{user.followed ? <button onClick={() => {
+				{user.followed ? <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
 					dispatch(unFollowThunk(user.id))
-				}}>unFollow</button> : <button onClick={() => {
+				}}>unFollow</button> : <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
 					dispatch(followThunk(user.id));
 				}}>follow</button>}
 			</div>
