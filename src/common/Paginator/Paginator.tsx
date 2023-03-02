@@ -1,11 +1,30 @@
-import { useState } from "react"
+import { FC, useState } from "react"
 // import s from './Paginator.module.scss'
 // import cn from "classnames"
+// import { setCurrentPage } from "../../Redux/ActionCreators";
+// import { Dispatch } from "redux";
+// import { useDispatch } from "react-redux";
+
+
+// interface Props {
+// 	portionSize: number
+// 	currentPage: number,
+// 	totalItemsCount: number,
+// 	pageSize: number,
+// 	onPageChange: () => void
+// }
 
 
 
-// const Paginator = ( { portionSize = 10 }) => {
-// 	let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
+// const Paginator: FC<Props> = ({ portionSize = 10, currentPage, totalItemsCount, pageSize, onPageChange }) => {
+
+// 	const dispatch = useDispatch<Dispatch<any>>()
+
+
+
+
+
+// 	let pagesCount = Math.ceil(totalItemsCount / pageSize)
 // 	let pages = []
 // 	for (let i = 1; i <= pagesCount; i++) {
 // 		pages.push(i)
@@ -15,7 +34,7 @@ import { useState } from "react"
 
 // 	let portionCount = Math.ceil(pagesCount / portionSize)
 // 	// let [portionNumber, setPortionNumber] = useState(1)
-// 	const [portionNumber, setPortionNumber] = useState(Math.ceil(props.currentPage / portionSize))
+// 	const [portionNumber, setPortionNumber] = useState(Math.ceil(currentPage / portionSize))
 // 	let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
 // 	let rightPortionPageNumber = portionNumber * portionSize
 
@@ -27,9 +46,9 @@ import { useState } from "react"
 // 			.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
 // 			.map((p) => {
 // 				return <span
-// 					onClick={(e) => { props.onPageChenged(p) }}
+// 					onClick={(e) => { onPageChange() }}
 // 					className={cn({
-// 						[s.selectedPage]: props.currentPage === p
+// 						[s.selectedPage]: currentPage === p
 // 					}, s.pageNumber)}>{p}</span>
 // 			})}
 // 		{portionCount > portionNumber &&

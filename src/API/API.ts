@@ -19,6 +19,7 @@ export const usersAPI = {
 		})
 	},
 	follow(userId: number) {
+		console.log('запрос')
 		return instance.post(`follow/${userId}`,
 		)
 

@@ -50,27 +50,27 @@ export const requestUsersThunk = (page: number, pageSize: number): ActionT<Users
 
 
 
-// export const follow = (userId:number) => {
-// 	return async (dispatch) => {
-// 		dispatch(toggleIsFollowingProgress(true, userId))
-// 		let response = await usersAPI.follow(userId)
-// 		if (response.data.resultCode === 0) {
-// 			dispatch(followSuccess(userId))
-// 		}
-// 		dispatch(toggleIsFollowingProgress(false, userId))
-// 	}
-// }
+export const followThunk = (userId: number): ActionT<UsersReducerActions> => {
+	return async (dispatch) => {
+		dispatch(toggleIsFollowingProgress(true, userId))
+		let response = await usersAPI.follow(userId)
+		if (response.data.resultCode === 0) {
+			dispatch(followSuccess(userId))
+		}
+		dispatch(toggleIsFollowingProgress(false, userId))
+	}
+}
 
 
 
-// export const unFollow = (userId:number) => {
-// 	return async (dispatch) => {
-// 		dispatch(toggleIsFollowingProgress(true, userId))
-// 		let response = await usersAPI.unFollow(userId)
-// 		if (response.data.resultCode === 0) {
-// 			dispatch(unFollowSuccess(userId))
-// 		}
-// 		dispatch(toggleIsFollowingProgress(false, userId))
-// 	}
-// }
+export const unFollowThunk = (userId: number): ActionT<UsersReducerActions> => {
+	return async (dispatch) => {
+		dispatch(toggleIsFollowingProgress(true, userId))
+		let response = await usersAPI.unFollow(userId)
+		if (response.data.resultCode === 0) {
+			dispatch(unFollowSuccess(userId))
+		}
+		dispatch(toggleIsFollowingProgress(false, userId))
+	}
+}
 
