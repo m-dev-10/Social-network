@@ -46,7 +46,7 @@ const Users = () => {
 		<div className={s.users__container}>
 			<div><Paginator portionSize={portionSize} currentPage={currentPage} totalItemsCount={totalItemsCount} pageSize={pageSize} /></div>
 			{/* <div>{pages.map((p) => { return <span onClick={() => dispatch(setCurrentPage(p))} className={currentPage === p ? s.selectedPage : ''}>{p}</span> })}</div> */}
-			{Users.map((u) => <User user={u} />)}
+			<div className={s.usersList}>{Users.map((u) => <User user={u} />)}</div>
 		</div>
 	)
 

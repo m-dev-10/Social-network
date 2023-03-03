@@ -5,14 +5,15 @@ interface Props {
 	text: string
 	callback: () => void
 	color?: string
+	disabled?: boolean
 
 }
 
-const UserButton: FC<Props> = ({ callback, text, color = "white", }) => {
+const UserButton: FC<Props> = ({ callback, text, color = "white", disabled }) => {
 
 
 	return (<div>
-		<button style={{}} onClick={callback} className={s.button}>{text}</button>
+		<button style={{}} disabled={disabled} onClick={callback} className={s.button}>{text}</button>
 	</div>
 	)
 }

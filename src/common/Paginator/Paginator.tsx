@@ -5,7 +5,6 @@ import { setCurrentPage } from "../../Redux/ActionCreators";
 import { Dispatch } from "redux";
 import { useDispatch } from "react-redux";
 import { requestUsersThunk } from "../../Redux/ThunkCreators";
-import DefaultButton from "../../components/Buttons/DefaultButton";
 import UserButton from "../../components/Buttons/UserButton/UserButton";
 
 
@@ -24,7 +23,7 @@ const Paginator: FC<Props> = ({ portionSize = 10, currentPage, totalItemsCount, 
 	const dispatch = useDispatch<Dispatch<any>>()
 	useEffect(
 		() => {
-			dispatch(requestUsersThunk(currentPage, 10))
+			dispatch(requestUsersThunk(currentPage, 16))
 		}, [currentPage]
 	)
 

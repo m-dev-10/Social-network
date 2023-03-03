@@ -7,31 +7,33 @@ import { Dispatch } from "redux";
 import { followThunk, unFollowThunk } from "../../../Redux/ThunkCreators";
 import { useSelector } from "react-redux";
 import { Store } from "../../../Redux/redux-store";
+import UserButton from "../../Buttons/UserButton/UserButton";
 
 interface Props {
 	user: IUser,
+
 }
 
 
-const User: FC<Props> = ({ user }) => {
+const User: FC<Props> = ({ user, }) => {
 	const dispatch = useDispatch<Dispatch<any>>()
 
 	const followingInProgress = useSelector((state: Store) => state.UsersPage.followingInProgress)
 
 	return (
-		<div className={s.user}>
+		<div className={s.user} >
 			<div className={s.userPhoto} >
 				<img src={!user.photos.small ? userPhoto : user.photos.small} alt="userPhoto" />
+				{user.followed ? <UserButton text={"unfollow"} disabled={followingInProgress.some(id => id === user.id)} callback={() => {
+					dispatch(unFollowThunk(user.id))
+				}} /> : <UserButton text={"follow"} disabled={followingInProgress.some(id => id === user.id)} callback={() => {
+					dispatch(followThunk(user.id));
+				}} />}
 			</div>
 			<div className={s.userInfo}>
-				<div>{user.id}</div>
-				<div>{user.name}</div>
-				<div>{user.status}</div>
-				{user.followed ? <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-					dispatch(unFollowThunk(user.id))
-				}}>unFollow</button> : <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-					dispatch(followThunk(user.id));
-				}}>follow</button>}
+				<div>id: {user.id}</div>
+				<div>name: {user.name}</div>
+				<div>{user.status ? "status: " + user.status : ''}</div>
 			</div>
 		</div >
 	)

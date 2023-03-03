@@ -1,8 +1,13 @@
 .users__container {
-	color: red;
 }
 
-.selectedPage {
-	font-weight: 700;
-	color: blue;
+// .selectedPage {
+// 	font-weight: 700;
+// 	color: blue;
+// }
+
+.usersList {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: 30px;
 }
