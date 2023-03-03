@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { redirect } from 'react-router-dom';
 import s from './DefaultButton.module.scss'
 
 interface Props {
