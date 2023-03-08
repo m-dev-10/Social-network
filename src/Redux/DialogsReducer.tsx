@@ -1,4 +1,4 @@
-import { addMessageAC } from "./ActionCreators";
+import { addMessageTypesAC } from "./ActionCreators";
 import { ADD_MESSAGE } from "./ActionTypes";
 
 let initialState = {
@@ -21,7 +21,7 @@ let initialState = {
 export type StateDialogsReducer = typeof initialState
 
 
-type DialogsReducerActions = addMessageAC
+type DialogsReducerActions = addMessageTypesAC
 
 
 const DialogsReducer = (State = initialState, action: DialogsReducerActions) => {

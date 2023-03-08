@@ -1,5 +1,5 @@
-import { addPostTypesAC, deletePostAC, deletePostTypesAC } from "./ActionCreators";
-import { ADD_POST, DELETE_POST } from "./ActionTypes";
+import { addPostTypesAC, deletePostAC, deletePostTypesAC, setUsersProfileTypesAC } from "./ActionCreators";
+import { ADD_POST, DELETE_POST, SET_USERS_PROFILE } from "./ActionTypes";
 
 // const SET_USERS_PROFILE = "SET_USERS_PROFILE"
 // const SET_STATUS = "SET_STATUS"
@@ -20,12 +20,13 @@ let initialState = {
 	profile: null,
 	error: null,
 	status: ""
+
 }
 
 export type StateProfileReducer = typeof initialState
 
 
-type ProfileReducerActions = addPostTypesAC | deletePostTypesAC
+export type ProfileReducerActions = addPostTypesAC | deletePostTypesAC | setUsersProfileTypesAC
 
 
 const ProfileReducer = (state = initialState, action: ProfileReducerActions) => {
@@ -49,6 +50,9 @@ const ProfileReducer = (state = initialState, action: ProfileReducerActions) => 
 					}
 				})]
 			}
+		case SET_USERS_PROFILE: {
+			return { ...state, profile: action.profile }
+		}
 		default:
 			return state
 	}

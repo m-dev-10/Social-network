@@ -13,14 +13,14 @@ export type Store = {
 }
 
 
-let redurers = combineReducers({
+let reducers = combineReducers({
 	ProfilePage: ProfileReducer,
 	DialogsPage: DialogsReducer,
 	auth: AuthReducer,
 	UsersPage: UsersReducer
 })
 
-const store = createStore(redurers, applyMiddleware(thunkMiddleware))
+const store = createStore(reducers, applyMiddleware(thunkMiddleware))
 
 
 

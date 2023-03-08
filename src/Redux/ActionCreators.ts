@@ -6,7 +6,8 @@ import {
 	SET_USERS,
 	TOGGLE_IS_FETCHING,
 	TOGGLE_IS_FOLLOWING_PROGRESS,
-	UNFOLLOW
+	UNFOLLOW,
+	SET_USERS_PROFILE
 } from "./ActionTypes"
 
 
@@ -30,19 +31,19 @@ export const deletePostAC = (id: number): deletePostTypesAC => {
 	return { type: DELETE_POST, id }
 }
 
-export type addMessageAC = {
+export type addMessageTypesAC = {
 	type: typeof ADD_MESSAGE,
 	id: number,
 	messageText: string
 }
 
 
-export const addMessageAC = (id: number, messageText: string): addMessageAC => {
+export const addMessageAC = (id: number, messageText: string): addMessageTypesAC => {
 	return { type: ADD_MESSAGE, id, messageText }
 }
 
 
-export type authAC = {
+export type authTypesAC = {
 	type: typeof SET_USERS_DATA,
 	payload: {
 		id: number | null,
@@ -53,8 +54,17 @@ export type authAC = {
 }
 
 
-export const authAC = (id: number | null, email: string | null, login: string | null, isAuth: boolean): authAC => {
+export const authAC = (id: number | null, email: string | null, login: string | null, isAuth: boolean): authTypesAC => {
 	return { type: SET_USERS_DATA, payload: { id, email, login, isAuth } }
+}
+
+export type setUsersProfileTypesAC = {
+	type: typeof SET_USERS_PROFILE,
+	profile?: string | number | null
+}
+
+export const setUsersProfileAC = (profile: string | number | null): setUsersProfileTypesAC => {
+	return { type: SET_USERS_PROFILE, profile }
 }
 
 

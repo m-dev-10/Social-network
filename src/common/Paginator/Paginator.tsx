@@ -21,11 +21,11 @@ interface Props {
 const Paginator: FC<Props> = ({ portionSize = 10, currentPage, totalItemsCount, pageSize, }) => {
 
 	const dispatch = useDispatch<Dispatch<any>>()
-	useEffect(
-		() => {
-			dispatch(requestUsersThunk(currentPage, 16))
-		}, [currentPage]
-	)
+	// useEffect(
+	// 	() => {
+	// 		dispatch(requestUsersThunk(currentPage, 16))
+	// 	}, [currentPage]
+	// )
 
 
 

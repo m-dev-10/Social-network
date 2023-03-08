@@ -4,26 +4,29 @@ import userPhoto from '../../../assets/images/Users/UserPhoto.jpg'
 import s from './User.module.scss'
 import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
-import { followThunk, unFollowThunk } from "../../../Redux/ThunkCreators";
+import { followThunk, getProfileThunk, unFollowThunk } from "../../../Redux/ThunkCreators";
 import { useSelector } from "react-redux";
 import { Store } from "../../../Redux/redux-store";
 import UserButton from "../../Buttons/UserButton/UserButton";
+import { NavLink } from "react-router-dom";
 
 interface Props {
 	user: IUser,
-
+	followingInProgress: Array<number>,
+	callback: () => void
 }
 
 
-const User: FC<Props> = ({ user, }) => {
+const User: FC<Props> = ({ user, callback, followingInProgress }) => {
 	const dispatch = useDispatch<Dispatch<any>>()
 
-	const followingInProgress = useSelector((state: Store) => state.UsersPage.followingInProgress)
+
+
 
 	return (
 		<div className={s.user} >
 			<div className={s.userPhoto} >
-				<img src={!user.photos.small ? userPhoto : user.photos.small} alt="userPhoto" />
+				<NavLink to={"/profile/" + user.id}><img onClick={callback} src={!user.photos.small ? userPhoto : user.photos.small} alt="userPhoto" /></NavLink>
 				{user.followed ? <UserButton text={"unfollow"} disabled={followingInProgress.some(id => id === user.id)} callback={() => {
 					dispatch(unFollowThunk(user.id))
 				}} /> : <UserButton text={"follow"} disabled={followingInProgress.some(id => id === user.id)} callback={() => {
@@ -31,9 +34,9 @@ const User: FC<Props> = ({ user, }) => {
 				}} />}
 			</div>
 			<div className={s.userInfo}>
-				<div>id: {user.id}</div>
-				<div>name: {user.name}</div>
-				<div>{user.status ? "status: " + user.status : ''}</div>
+				<div><span >id:</span> {user.id}</div>
+				<div><span>name:</span> {user.name}</div>
+				<div style={{ color: "seagreen" }}>{user.status ? "Status: " + user.status : ''}</div>
 			</div>
 		</div >
 	)

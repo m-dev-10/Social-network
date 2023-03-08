@@ -1,4 +1,4 @@
-import { authAC } from "./ActionCreators"
+import { authTypesAC } from "./ActionCreators"
 import { SET_USERS_DATA } from "./ActionTypes"
 
 
@@ -13,7 +13,7 @@ let initialState = {
 export type StateAuthReducer = typeof initialState
 
 
-export type AuthReducerActions = authAC
+export type AuthReducerActions = authTypesAC
 
 
 const AuthReducer = (State = initialState, action: AuthReducerActions) => {

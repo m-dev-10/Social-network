@@ -1,5 +1,6 @@
-import { authAPI, usersAPI } from "../API/API"
-import { authAC, followSuccess, setCurrentPage, setIsFetching, setTotalUsersCount, setUsers, toggleIsFollowingProgress, unFollowSuccess } from "./ActionCreators"
+import { ProfileReducerActions } from './ProfileReducer';
+import { authAPI, contentAPI, usersAPI } from "../API/API"
+import { authAC, followSuccess, setCurrentPage, setIsFetching, setTotalUsersCount, setUsers, setUsersProfileAC, toggleIsFollowingProgress, unFollowSuccess } from "./ActionCreators"
 import { AuthReducerActions } from "./AuthReducer"
 import { ActionT } from "./redux-types"
 import { UsersReducerActions } from "./UsersReducer"
@@ -74,3 +75,11 @@ export const unFollowThunk = (userId: number): ActionT<UsersReducerActions> => {
 	}
 }
 
+// ProfileThunk
+
+export const getProfileThunk = (userId: number): ActionT<ProfileReducerActions> => {
+	return async (dispatch) => {
+		let data = await contentAPI.getProfile(userId)
+		dispatch(setUsersProfileAC(data))
+	}
+}
