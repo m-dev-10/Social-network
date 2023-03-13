@@ -26,7 +26,7 @@ const User: FC<Props> = ({ user, callback, followingInProgress }) => {
 	return (
 		<div className={s.user} >
 			<div className={s.userPhoto} >
-				<NavLink to={"/profile/" + user.id}><img onClick={callback} src={!user.photos.small ? userPhoto : user.photos.small} alt="userPhoto" /></NavLink>
+				<NavLink to={"/profile/" + user.id}><img src={!user.photos.small ? userPhoto : user.photos.small} alt="userPhoto" /></NavLink>
 				{user.followed ? <UserButton text={"unfollow"} disabled={followingInProgress.some(id => id === user.id)} callback={() => {
 					dispatch(unFollowThunk(user.id))
 				}} /> : <UserButton text={"follow"} disabled={followingInProgress.some(id => id === user.id)} callback={() => {

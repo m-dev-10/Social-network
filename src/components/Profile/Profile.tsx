@@ -9,7 +9,7 @@ import { getProfileThunk } from "../../Redux/ThunkCreators";
 import MyAdverts from "./MyAdverts/MyAdverts";
 import s from './Profile.module.scss'
 import ProfilePage from "./ProfilePage/ProfilePage";
-
+import { useParams } from 'react-router-dom';
 
 
 
@@ -18,12 +18,20 @@ const Profile = () => {
 
 	const isAuth = useSelector((state: Store) => state.auth)
 	const profile = useSelector((state: Store) => state.ProfilePage.profile)
+	const status = useSelector((state: Store) => state.ProfilePage.status)
 	const dispatch = useDispatch<Dispatch<any>>()
-	// useEffect(
-	// 	() => {
-	// 		dispatch(setUsersProfileAC(profile))
-	// 	}, []
-	// )
+	const params = useParams();
+	const current = params.userId;
+	let userId = Number(current);
+
+	if (!userId) {
+		userId = 27287
+	}
+	useEffect(
+		() => {
+			dispatch(getProfileThunk(userId))
+		}, []
+	)
 
 
 	if (!isAuth.isAuth) {
@@ -33,7 +41,7 @@ const Profile = () => {
 
 	return (
 		<div className={s.profile}>
-			<ProfilePage profile={profile} likes={""} />
+			<ProfilePage status={status} profile={profile} likes={""} />
 			<MyAdverts />
 		</div>
 	)

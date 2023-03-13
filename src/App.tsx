@@ -29,7 +29,7 @@ const App = () => {
 				<SideBar />
 				<div className="AppWrapper__content">
 					<Routes>
-						<Route path="/profile" element={<Profile />} />
+						{/* <Route path="/profile" element={<Profile />} /> */}
 						<Route path="/dialogs" element={<Dialogs />} />
 						<Route path="/users" element={<Users />} />
 						<Route path="/login" element={<LoginForm />} />

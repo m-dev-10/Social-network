@@ -30,7 +30,7 @@ const Users = () => {
 
 	useEffect(
 		() => {
-			dispatch(requestUsersThunk(currentPage, 10))
+			dispatch(requestUsersThunk(currentPage, 16))
 		}, [currentPage]
 	)
 
