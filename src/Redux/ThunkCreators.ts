@@ -1,6 +1,6 @@
 import { ProfileReducerActions } from './ProfileReducer';
 import { authAPI, contentAPI, usersAPI } from "../API/API"
-import { authAC, followSuccess, setCurrentPage, setIsFetching, setTotalUsersCount, setUsers, setUsersProfileAC, toggleIsFollowingProgress, unFollowSuccess } from "./ActionCreators"
+import { authAC, followSuccess, setCurrentPage, setIsFetching, setStatusAC, setTotalUsersCount, setUsers, setUsersProfileAC, toggleIsFollowingProgress, unFollowSuccess, updateStatusAC } from "./ActionCreators"
 import { AuthReducerActions } from "./AuthReducer"
 import { ActionT } from "./redux-types"
 import { UsersReducerActions } from "./UsersReducer"
@@ -81,5 +81,25 @@ export const getProfileThunk = (userId: number): ActionT<ProfileReducerActions> 
 	return async (dispatch) => {
 		let data = await contentAPI.getProfile(userId)
 		dispatch(setUsersProfileAC(data))
+	}
+}
+
+
+
+export const getStatusThunk = (userId: number): ActionT<ProfileReducerActions> => {
+	return async (dispatch) => {
+		let response = await contentAPI.getStatus(userId)
+		dispatch(setStatusAC(response.data))
+		console.log('get thunk');
+	}
+}
+export const updateStatusThunk = (status: string): ActionT<ProfileReducerActions> => {
+	return async (dispatch) => {
+		let response = await contentAPI.updateStatus(status)
+		if (response.data.resultCode === 0) {
+			dispatch(setStatusAC(status))
+		}
+
+		console.log('update thunk');
 	}
 }

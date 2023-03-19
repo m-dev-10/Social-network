@@ -19,12 +19,13 @@ export const usersAPI = {
 		})
 	},
 	follow(userId: number) {
-		console.log('запрос')
+		console.log('подписаться')
 		return instance.post(`follow/${userId}`,
 		)
 
 	},
 	unFollow(userId: number) {
+		console.log('отписаться')
 		return instance.delete(`follow/${userId}`,
 		)
 	}
@@ -33,24 +34,26 @@ export const usersAPI = {
 export const contentAPI = {
 
 	getProfile(userId: number) {
-		console.log('api')
 		return instance.get(`profile/` + userId)
 			.then(response => {
 				return response.data
 			})
 	},
-	// 	getStatus(userId) {
-	// 		return instance.get(`profile/status/` + userId)
-	// 		// .then(response => {
-	// 		// 	return response.data
-	// 		// })
-	// 	},
-	// 	updateStatus(status) {
-	// 		return instance.put(`profile/status/`, { status: status })
-	// 		// .then(response => {
-	// 		// 	return response.data
-	// 		// })
-	// 	},
+	getStatus(userId: number) {
+		console.log('get API');
+		return instance.get(`profile/status/` + userId)
+			.then(response => {
+				return response
+			})
+	},
+	updateStatus(status: string) {
+		console.log('update API');
+		return instance.put(`profile/status/`, { status: status })
+			.then(response => {
+				console.log(response);
+				return response
+			})
+	},
 	// 	savePhoto(photoFile) {
 	// 		let formData = new FormData()
 	// 		formData.append("image", photoFile)

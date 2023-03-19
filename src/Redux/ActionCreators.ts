@@ -7,9 +7,29 @@ import {
 	TOGGLE_IS_FETCHING,
 	TOGGLE_IS_FOLLOWING_PROGRESS,
 	UNFOLLOW,
-	SET_USERS_PROFILE
+	SET_USERS_PROFILE,
+	SET_STATUS
 } from "./ActionTypes"
 
+export type setStatusTypesAC = {
+	type: typeof SET_STATUS,
+	status: string
+}
+
+
+export const setStatusAC = (status: string): setStatusTypesAC => {
+	return { type: SET_STATUS, status }
+}
+
+export type updateStatusTypesAC = {
+	type: typeof SET_STATUS,
+	status: string
+}
+
+
+export const updateStatusAC = (status: string): updateStatusTypesAC => {
+	return { type: SET_STATUS, status }
+}
 
 
 export type addPostTypesAC = {

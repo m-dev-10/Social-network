@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import { Dispatch } from "redux";
 import { setUsersProfileAC } from "../../Redux/ActionCreators";
 import { Store } from "../../Redux/redux-store";
-import { getProfileThunk } from "../../Redux/ThunkCreators";
+import { getProfileThunk, getStatusThunk, updateStatusThunk } from "../../Redux/ThunkCreators";
 import MyAdverts from "./MyAdverts/MyAdverts";
 import s from './Profile.module.scss'
 import ProfilePage from "./ProfilePage/ProfilePage";
@@ -30,9 +30,13 @@ const Profile = () => {
 	useEffect(
 		() => {
 			dispatch(getProfileThunk(userId))
-		}, []
+			dispatch(getStatusThunk(userId))
+		}, [status]
 	)
 
+	const updateStatus = (status: string) => {
+		dispatch(updateStatusThunk(status))
+	}
 
 	if (!isAuth.isAuth) {
 		return <Navigate to="/login" />
@@ -41,7 +45,7 @@ const Profile = () => {
 
 	return (
 		<div className={s.profile}>
-			<ProfilePage status={status} profile={profile} likes={""} />
+			<ProfilePage status={status} profile={profile} likes={""} updateStatus={updateStatus} />
 			<MyAdverts />
 		</div>
 	)

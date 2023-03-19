@@ -9,7 +9,7 @@ import { Store } from "../../Redux/redux-store";
 import { setCurrentPage } from "../../Redux/ActionCreators";
 import Paginator from "../../common/Paginator/Paginator";
 import Preloader from "../../common/Preloader/Preloader";
-
+import { followThunk, unFollowThunk } from "../../Redux/ThunkCreators";
 
 
 
@@ -34,7 +34,12 @@ const Users = () => {
 		}, [currentPage]
 	)
 
-
+	const follow = (userId: number) => {
+		dispatch(followThunk(userId))
+	}
+	const unFollow = (userId: number) => {
+		dispatch(unFollowThunk(userId))
+	}
 
 	// let pagesCount = Math.ceil(totalItemsCount / pageSize)
 	// let pages = []
@@ -49,7 +54,7 @@ const Users = () => {
 			{isFetching ? <Preloader /> : null}
 			<div><Paginator portionSize={portionSize} currentPage={currentPage} totalItemsCount={totalItemsCount} pageSize={pageSize} /></div>
 			{/* <div>{pages.map((p) => { return <span onClick={() => dispatch(setCurrentPage(p))} className={currentPage === p ? s.selectedPage : ''}>{p}</span> })}</div> */}
-			<div className={s.usersList}>{Users.map((u) => <User followingInProgress={followingInProgress} user={u} callback={() => dispatch(getProfileThunk(u.id))} />)}</div>
+			<div className={s.usersList}>{Users.map((u) => <User followingInProgress={followingInProgress} user={u} follow={follow} unFollow={unFollow} />)}</div>
 		</div>
 	)
 

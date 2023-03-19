@@ -7,10 +7,10 @@ interface Props {
 	profile?: any,
 	likes: string,
 	status: string
-	// deletePost: () => void
+	updateStatus: (status: string) => void
 }
 
-const ProfilePage: FC<Props> = ({ profile, status }) => {
+const ProfilePage: FC<Props> = ({ profile, status, updateStatus }) => {
 	if (!profile) {
 		return <Preloader />
 	}
@@ -19,9 +19,8 @@ const ProfilePage: FC<Props> = ({ profile, status }) => {
 			<div className={s.profilePage__container}>
 				<div className={s.avatar}><img className={s.avatarImage} src={profile?.photos?.large ? profile?.photos?.large : userPhoto} alt="Avatar" /></div>
 				<div className={s.profilePage__aboutMe}>
-					<div>{profile.fullName}</div>
-					<div>{profile.userId}</div>
-					<ProfileStatus status={status} />
+					<div>name: {profile.fullName}</div>
+					<div><ProfileStatus status={status} updateStatus={updateStatus} /></div>
 				</div>
 			</div>
 		</div>

@@ -3,6 +3,8 @@ import React, { FormEvent, useState } from "react"
 import { useDispatch } from "react-redux"
 import { Dispatch } from 'redux'
 import { loginThunk } from "../../Redux/ThunkCreators"
+import FormButton from "../Buttons/FormButton/FormButton"
+import s from './LoginForm.module.scss'
 // import { Store } from "../../Redux/redux-store";
 
 const LoginForm = () => {
@@ -29,20 +31,31 @@ const LoginForm = () => {
 
 
 
-	return <div>
-		<div>golovin.10174@gmail.com</div>
-		<div>Shareman-29055</div>
-		<form onSubmit={submit}>
-			<input onChange={(e) => setLogin(e.target.value)} value={login} type="text" />
-			<div>	<input onChange={(e) => setPassword(e.target.value)} value={password} type="password" /></div>
-			<input checked={checkbox} onChange={() => setCheckbox(prev => !prev)} type="checkbox" />
-			{/* {props.captchaUrl && <img src={props.captchaUrl} />}
+	return <div className={s.form} >
+		<div className={s.formContainer}>
+			<div className={s.formTitle}>
+				<h1>Please login to continue</h1>
+			</div>
+			<div className={s.data}>golovin.10174@gmail.com  qwer1234 </div>
+			<form onSubmit={submit}>
+				<div className={s.fromItem}>
+					<label className={s.label} htmlFor={"name"}>Email</label>
+					<input id={"name"} placeholder={"Write your email..."} className={s.input} onChange={(e) => setLogin(e.target.value)} value={login} type="text" />
+				</div>
+				<div className={s.fromItem}>
+					<label className={s.label} htmlFor={"password"}>Password</label>
+					<input id={"password"} className={s.input} placeholder={"Write your password..."} onChange={(e) => setPassword(e.target.value)} value={password} type="password" />
+				</div>
+				<div className={s.fromItem}>
+					<input id={"check"} checked={checkbox} onChange={() => setCheckbox(prev => !prev)} type="checkbox" />
+					<label className={s.label} htmlFor={"check"}>Remember me</label>
+				</div>
+				{/* {props.captchaUrl && <img src={props.captchaUrl} />}
 			{props.captchaUrl && <Field placeholder="write symbols" name={"captcha"} component={Input} validate={[required, maxLengthCreator(30)]} />}
 			{props.error && <div className={s.errorForm}>{props.error}</div>} */}
-			<div><button>log in</button></div>
-		</form>
-		{/* <button onClick={() => console.log(auth)
-		}>test</button> */}
+				<FormButton text={"LOGIN"} />
+			</form>
+		</div>
 	</div>
 }
 

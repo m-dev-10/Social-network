@@ -2,6 +2,8 @@
 export const ADD_POST = "ADD_POST"
 export const DELETE_POST = "DELETE_POST"
 export const SET_USERS_PROFILE = "SET_USERS_PROFILE"
+export const SET_STATUS = "SET_STATUS"
+export const UPDATE_STATUS = "UPDATE_STATUS"
 //DialogsPage
 export const ADD_MESSAGE = "ADD_MESSAGE"
 //UsersPage
