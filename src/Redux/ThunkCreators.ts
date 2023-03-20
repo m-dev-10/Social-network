@@ -11,6 +11,7 @@ export const authThunk = (): ActionT<AuthReducerActions> => async (dispatch) => 
 	if (response.data.resultCode === 0) {
 		// let { id, login, email } = response.data.data
 		let { id, email, login } = response.data.data
+		console.log('thunk3');
 		console.log('resposne', response);
 		// console.log('id, login, email ', id, login, response);
 		console.log('e', email, 'l', login);
@@ -18,7 +19,9 @@ export const authThunk = (): ActionT<AuthReducerActions> => async (dispatch) => 
 	}
 }
 export const loginThunk = (login: string, password: string, rememberMe: boolean): ActionT<AuthReducerActions> => async (dispatch) => {
+	console.log('thunk1');
 	let response = await authAPI.login(login, password, rememberMe)
+	console.log('error');
 	if (response.data.resultCode === 0) {
 		// let { id, login, email } = response.data.data
 		let id = response.data.data.userId

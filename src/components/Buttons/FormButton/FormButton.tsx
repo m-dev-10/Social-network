@@ -3,6 +3,7 @@ import s from './FormButton.module.scss'
 
 interface Props {
 	text: string
+
 	// callback: () => void
 	// color?: string
 	// disabled?: boolean
@@ -10,9 +11,6 @@ interface Props {
 }
 
 const FormButton: FC<Props> = ({ text }) => {
-	console.log('click');
-
-
 	return (<div>
 		<div><button className={s.button}>{text}</button></div>
 	</div>

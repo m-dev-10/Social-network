@@ -19,6 +19,7 @@ export type AuthReducerActions = authTypesAC
 const AuthReducer = (State = initialState, action: AuthReducerActions) => {
 	switch (action.type) {
 		case SET_USERS_DATA:
+			console.log('thunk5');
 			return {
 				...State,
 				...action.payload,

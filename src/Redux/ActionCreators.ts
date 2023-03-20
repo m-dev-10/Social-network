@@ -75,6 +75,7 @@ export type authTypesAC = {
 
 
 export const authAC = (id: number | null, email: string | null, login: string | null, isAuth: boolean): authTypesAC => {
+	console.log('thunk4');
 	return { type: SET_USERS_DATA, payload: { id, email, login, isAuth } }
 }
 
