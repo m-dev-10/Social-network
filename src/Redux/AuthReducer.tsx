@@ -3,7 +3,7 @@ import { SET_USERS_DATA } from "./ActionTypes"
 
 
 let initialState = {
-	id: null,
+	id: null || 0,
 	email: null,
 	login: null,
 	isAuth: false,
@@ -23,7 +23,7 @@ const AuthReducer = (State = initialState, action: AuthReducerActions) => {
 			return {
 				...State,
 				...action.payload,
-				isAuth: true
+
 			}
 		default:
 			return State

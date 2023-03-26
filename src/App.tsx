@@ -1,30 +1,40 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import './App.css';
+import Preloader from './common/Preloader/Preloader';
 import Dialogs from './components/Dialogs/Dialogs';
 import Header from './components/Header/Header'
+import HeaderContainer from './components/Header/HeaderContainer';
 import LoginForm from './components/LoginForm/LoginForm';
 import Profile from './components/Profile/Profile';
 import SideBar from './components/SideBar/SideBar';
 import Users from './components/Users/Users';
-import { authThunk } from './Redux/ThunkCreators';
+import { Store } from './Redux/redux-store';
+import { authThunk, initializeAppThunk } from './Redux/ThunkCreators';
 
 
 const App = () => {
+	const initialized = useSelector((state: Store) => state.app.initialized)
 
 	const dispatch = useDispatch<Dispatch<any>>()
 	useEffect(
 		() => {
-			dispatch(authThunk())
+			dispatch(initializeAppThunk())
 		}, []
 	)
 
+
+	if (!initialized) {
+		return <Preloader />
+	}
+
 	return (
 		<div className="AppWrapper">
-			<Header />
+			<HeaderContainer />
 			<div className="AppWrapper__items">
 				<SideBar />
 				<div className="AppWrapper__content">

@@ -8,7 +8,9 @@ import {
 	TOGGLE_IS_FOLLOWING_PROGRESS,
 	UNFOLLOW,
 	SET_USERS_PROFILE,
-	SET_STATUS
+	SET_STATUS,
+	SET_INITIALIZED,
+	SAVE_AVATAR
 } from "./ActionTypes"
 
 export type setStatusTypesAC = {
@@ -30,6 +32,18 @@ export type updateStatusTypesAC = {
 export const updateStatusAC = (status: string): updateStatusTypesAC => {
 	return { type: SET_STATUS, status }
 }
+
+export type saveAvatarTypesAC = {
+	type: typeof SAVE_AVATAR,
+	photos: any
+}
+
+
+export const saveAvatarAC = (photos: any): saveAvatarTypesAC => {
+	console.log('ava6');
+	return { type: SAVE_AVATAR, photos }
+}
+
 
 
 export type addPostTypesAC = {
@@ -162,3 +176,12 @@ export const toggleIsFollowingProgress = (isFetching: boolean, userId: number): 
 	return { type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId }
 }
 
+//app
+
+export type initializedTypesAC = {
+	type: typeof SET_INITIALIZED
+}
+
+export const initializedAC = (): initializedTypesAC => {
+	return { type: SET_INITIALIZED }
+}

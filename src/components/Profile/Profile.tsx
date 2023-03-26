@@ -4,38 +4,47 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { Dispatch } from "redux";
 import { setUsersProfileAC } from "../../Redux/ActionCreators";
-import { Store } from "../../Redux/redux-store";
-import { getProfileThunk, getStatusThunk, updateStatusThunk } from "../../Redux/ThunkCreators";
+import store, { Store } from "../../Redux/redux-store";
+import { getProfileThunk, getStatusThunk, saveAvatarThunk, updateStatusThunk } from "../../Redux/ThunkCreators";
 import MyAdverts from "./MyAdverts/MyAdverts";
 import s from './Profile.module.scss'
 import ProfilePage from "./ProfilePage/ProfilePage";
 import { useParams } from 'react-router-dom';
+// import { useHistory } from "react-router";
 
 
 
 
 const Profile = () => {
-
+	// const hist = useHistory()
 	const isAuth = useSelector((state: Store) => state.auth)
 	const profile = useSelector((state: Store) => state.ProfilePage.profile)
 	const status = useSelector((state: Store) => state.ProfilePage.status)
+	const authorizedUserId = useSelector((state: Store) => state.auth.id)
 	const dispatch = useDispatch<Dispatch<any>>()
 	const params = useParams();
 	const current = params.userId;
 	let userId = Number(current);
 
-	if (!userId) {
-		userId = 27287
-	}
+
 	useEffect(
 		() => {
+			if (!userId) {
+				userId = authorizedUserId
+			}
 			dispatch(getProfileThunk(userId))
 			dispatch(getStatusThunk(userId))
-		}, [status]
+		}, [status, userId]
 	)
 
 	const updateStatus = (status: string) => {
 		dispatch(updateStatusThunk(status))
+	}
+
+	const savePhoto = (e: any) => {
+		dispatch(saveAvatarThunk(e))
+		console.log('ava2');
+
 	}
 
 	if (!isAuth.isAuth) {
@@ -45,7 +54,7 @@ const Profile = () => {
 
 	return (
 		<div className={s.profile}>
-			<ProfilePage status={status} profile={profile} likes={""} updateStatus={updateStatus} />
+			<ProfilePage status={status} profile={profile} likes={""} updateStatus={updateStatus} savePhoto={savePhoto} isOwner={!userId} />
 			<MyAdverts />
 		</div>
 	)

@@ -1,9 +1,10 @@
 import { ProfileReducerActions } from './ProfileReducer';
 import { authAPI, contentAPI, usersAPI } from "../API/API"
-import { authAC, followSuccess, setCurrentPage, setIsFetching, setStatusAC, setTotalUsersCount, setUsers, setUsersProfileAC, toggleIsFollowingProgress, unFollowSuccess, updateStatusAC } from "./ActionCreators"
+import { authAC, followSuccess, initializedAC, saveAvatarAC, setCurrentPage, setIsFetching, setStatusAC, setTotalUsersCount, setUsers, setUsersProfileAC, toggleIsFollowingProgress, unFollowSuccess, updateStatusAC } from "./ActionCreators"
 import { AuthReducerActions } from "./AuthReducer"
 import { ActionT } from "./redux-types"
 import { UsersReducerActions } from "./UsersReducer"
+import { appReducerActions } from './appReducer';
 
 //LoginThunk
 export const authThunk = (): ActionT<AuthReducerActions> => async (dispatch) => {
@@ -102,7 +103,23 @@ export const updateStatusThunk = (status: string): ActionT<ProfileReducerActions
 		if (response.data.resultCode === 0) {
 			dispatch(setStatusAC(status))
 		}
+	}
+}
+export const saveAvatarThunk = (photoFile: string): ActionT<ProfileReducerActions> => {
+	return async (dispatch) => {
+		let response = await contentAPI.savePhoto(photoFile)
+		if (response.data.resultCode === 0) {
+			console.log('ava5');
+			dispatch(saveAvatarAC(response.data.data.photos))
+		}
+	}
+}
 
-		console.log('update thunk');
+//app
+
+export const initializeAppThunk = (): ActionT<appReducerActions> => {
+	return async (dispatch) => {
+		let promise = dispatch(authThunk())
+		Promise.all([promise]).then(() => { dispatch(initializedAC()) })
 	}
 }

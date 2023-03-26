@@ -1,5 +1,6 @@
-import { addPostTypesAC, deletePostAC, deletePostTypesAC, setStatusTypesAC, setUsersProfileTypesAC, updateStatusTypesAC } from "./ActionCreators";
-import { ADD_POST, DELETE_POST, SET_STATUS, SET_USERS_PROFILE } from "./ActionTypes";
+import { profile } from "console";
+import { addPostTypesAC, deletePostAC, deletePostTypesAC, setStatusTypesAC, setUsersProfileTypesAC, updateStatusTypesAC, saveAvatarTypesAC } from "./ActionCreators";
+import { ADD_POST, DELETE_POST, SAVE_AVATAR, SET_STATUS, SET_USERS_PROFILE } from "./ActionTypes";
 
 // const SET_USERS_PROFILE = "SET_USERS_PROFILE"
 // const SET_STATUS = "SET_STATUS"
@@ -17,7 +18,7 @@ let initialState = {
 		{ id: 4, message: "I love ps 5", likes: "28" },
 
 	],
-	profile: null,
+	profile: null || {},
 	error: null,
 	status: ""
 
@@ -26,7 +27,7 @@ let initialState = {
 export type StateProfileReducer = typeof initialState
 
 
-export type ProfileReducerActions = addPostTypesAC | deletePostTypesAC | setUsersProfileTypesAC | setStatusTypesAC | updateStatusTypesAC
+export type ProfileReducerActions = addPostTypesAC | deletePostTypesAC | setUsersProfileTypesAC | setStatusTypesAC | updateStatusTypesAC | saveAvatarTypesAC
 
 
 const ProfileReducer = (state = initialState, action: ProfileReducerActions) => {
@@ -57,6 +58,12 @@ const ProfileReducer = (state = initialState, action: ProfileReducerActions) => 
 			console.log('reducer');
 			return { ...state, status: action.status }
 		}
+		case SAVE_AVATAR:
+			console.log('ava7')
+			return {
+				...state, profile: { ...state.profile, photos: action.photos }
+			}
+
 		default:
 			return state
 	}

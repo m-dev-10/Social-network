@@ -1,7 +1,11 @@
 import React, { FC, FormEvent, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
+import { Navigate } from "react-router-dom"
 import { Dispatch } from 'redux'
+import Redirect from "../../Redux/Redirect"
+import { Store } from "../../Redux/redux-store"
 import { loginThunk } from "../../Redux/ThunkCreators"
 import FormButton from "../Buttons/FormButton/FormButton"
 import s from './LoginForm.module.scss'
@@ -17,7 +21,7 @@ interface formTypes {
 
 const LoginForm = () => {
 
-	// const auth = useSelector((state: Store) => state.auth)
+	const auth = useSelector((state: Store) => state.auth)
 
 	// const [login, setLogin] = useState('')
 	// const [password, setPassword] = useState('')
@@ -50,9 +54,9 @@ const LoginForm = () => {
 	// 	setCheckbox(false)
 	// }onSubmit={submit}
 
-
-
-
+	if (auth.isAuth) {
+		return <Navigate to={"/profile"} />
+	}
 	return <div className={s.form} >
 		<div className={s.formContainer}>
 			<div className={s.formTitle}>
@@ -70,7 +74,7 @@ const LoginForm = () => {
 									/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
 								message: "Please enter valid email"
 							},
-						})} id={"email"} placeholder={"Write your email..."} className={s.input} type="text" />
+						})} style={{ border: errors.email && "2px solid red" }} id={"email"} placeholder={"Write your email..."} className={s.input} type="text" />
 					{errors?.email && (<div style={{ color: "red", fontSize: 16 }}>{errors.email.message}</div>)}
 				</div>
 				<div className={s.fromItem}>
@@ -82,7 +86,7 @@ const LoginForm = () => {
 								value: 6,
 								message: "password min length 5 symbols"
 							}
-						})} id={"password"} className={s.input} placeholder={"Write your password..."} type="password" />
+						})} style={{ border: errors.password && "2px solid red" }} id={"password"} className={s.input} placeholder={"Write your password..."} type="password" />
 					{errors?.password && (<div style={{ color: "red", fontSize: 16 }}>{errors.password.message}</div>)}
 
 				</div>
