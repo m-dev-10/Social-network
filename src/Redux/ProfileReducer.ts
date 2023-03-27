@@ -11,11 +11,10 @@ import { ADD_POST, DELETE_POST, SAVE_AVATAR, SET_STATUS, SET_USERS_PROFILE } fro
 
 let initialState = {
 	PostsData: [
-		{ id: 0, message: "1234567", likes: "20" },
-		{ id: 1, message: "I'am fine, thank you", likes: "30" },
-		{ id: 2, message: "Bye bye", likes: "56" },
-		{ id: 3, message: "Hi Hi", likes: "13" },
-		{ id: 4, message: "I love ps 5", likes: "28" },
+		{ id: 0, message: "Lorem ipsum dolor sit amet.", likes: "20" },
+		{ id: 1, message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, dolorum.", likes: "30" },
+		{ id: 2, message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt qui eligendi corporis excepturi!", likes: "56" },
+
 
 	],
 	profile: null || {},

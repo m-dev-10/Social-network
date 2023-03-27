@@ -5,12 +5,14 @@ import { updateStatusThunk } from "../../../Redux/ThunkCreators";
 import s from './ProfileStatus.module.scss'
 
 interface Props {
+	isOwner: boolean
 	status: string
 	updateStatus: (localStatus: string) => void
+	style: any
 }
 
 
-const ProfileStatus: FC<Props> = ({ status, updateStatus }) => {
+const ProfileStatus: FC<Props> = ({ status, updateStatus, style, isOwner }) => {
 
 	const [editMode, setEditMode] = useState(false)
 
@@ -22,7 +24,10 @@ const ProfileStatus: FC<Props> = ({ status, updateStatus }) => {
 		}, [status]
 	)
 	const activateEditMode = () => {
-		setEditMode(true)
+		if (isOwner) {
+			setEditMode(true)
+		}
+
 	}
 
 	const deActivateEditMode = () => {
@@ -36,8 +41,8 @@ const ProfileStatus: FC<Props> = ({ status, updateStatus }) => {
 
 	return (
 		<div>{!editMode
-			? <div><span onDoubleClick={activateEditMode}>status: {status ? status : '-----'}</span></div>
-			: <div><input className={s.inputStatus} onChange={onStatusChange} value={localStatus} onBlur={deActivateEditMode} autoFocus={true} type="text" /></div>}
+			? <div><span style={style} onDoubleClick={activateEditMode}>status: {status ? status : '---'}</span></div>
+			: <div><input maxLength={45} className={s.inputStatus} onChange={onStatusChange} value={localStatus} onBlur={deActivateEditMode} autoFocus={true} type="text" /></div>}
 		</div>
 	)
 }

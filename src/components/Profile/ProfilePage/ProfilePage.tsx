@@ -29,11 +29,16 @@ const ProfilePage: FC<Props> = ({ profile, status, updateStatus, isOwner, savePh
 		<div className={s.profilePage}>
 			<div className={s.profilePage__container}>
 				<div className={s.avatar}><img className={s.avatarImage} src={profile?.photos?.large ? profile?.photos?.large : userPhoto} alt="avatar" />
-					{isOwner && <input type={"file"} onChange={avatarSelected} />}
+					<div>{isOwner && <div className={s.inputFile}>
+						<input id={"inputAvatar"} type={"file"} className={s.inputAvatar} onChange={avatarSelected} />
+						<label className={s.inputAvatarLabel} htmlFor="inputAvatar">Add avatar</label>
+					</div>}</div>
 				</div>
 				<div className={s.profilePage__aboutMe}>
-					<div>name: {profile.fullName}</div>
-					<div><ProfileStatus status={status} updateStatus={updateStatus} /></div>
+					<div><span>name:</span> {profile.fullName}</div>
+					<div><span>lookingForAJob:</span> {profile.lookingForAJob ? "yes" : "no"}</div>
+					<div><span>aboutMe:</span> {profile.aboutMe ? profile.aboutMe : '---'}</div>
+					<div className={s.status}><ProfileStatus style={{ color: "red" }} isOwner={isOwner} status={status} updateStatus={updateStatus} /></div>
 				</div>
 			</div>
 		</div>

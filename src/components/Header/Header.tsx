@@ -30,6 +30,8 @@ const Header: FC<Props> = ({ isAuth, unSubmit, profile, authorizedUserId }) => {
 	// 	console.log('end');
 	// }
 
+
+
 	return (
 		<header className={s.header}>
 			<div className={s.container}>
@@ -40,7 +42,7 @@ const Header: FC<Props> = ({ isAuth, unSubmit, profile, authorizedUserId }) => {
 					<img title={'Поиск...'} onClick={() => { alert('search...') }} className={s.searchIcon} src={searchIconWhite} alt="searchIcon" />
 				</div>
 				<div className={s.logout}>
-					{isAuth.isAuth ? <div><img className={s.headerImage} src={profile?.photos?.small && profile.id == 27287 ? profile?.photos?.small : ""} alt="avatar" />{isAuth.login}<button className={s.button} onClick={unSubmit}>log out</button></div> : <NavLink to="/login"></NavLink>}
+					{isAuth.isAuth ? <div><img className={s.headerImage} src={profile?.photos?.small ? profile?.photos?.small : userPhoto} alt="avatar" />{isAuth.login}<button className={s.button} onClick={unSubmit}>log out</button></div> : <NavLink to="/login"></NavLink>}
 				</div>
 			</div>
 

@@ -8,9 +8,10 @@ interface Props {
 	message: string,
 	likes: string,
 	deletePost: () => void
+	profile: any
 }
 
-const MyAdvert: FC<Props> = ({ message, likes, deletePost }) => {
+const MyAdvert: FC<Props> = ({ message, likes, deletePost, profile }) => {
 
 
 	const [like, setLike] = useState(false)
@@ -46,7 +47,7 @@ const MyAdvert: FC<Props> = ({ message, likes, deletePost }) => {
 		<div className={s.advert}>
 			<div className={s.advert__container}>
 				<div className={s.advert__Item}>
-					<div className={s.advert__picture}>	<img className={s.advert__avatar} src="https://www.perunica.ru/uploads/posts/2019-03/1552932077_1.jpg" alt="advertAvatar" /></div>
+					<div className={s.advert__picture}>	<img className={s.advert__avatar} src={profile?.photos?.small && profile?.photos?.small} alt="advertAvatar" /></div>
 					{/* <div><button onClick={() => deletePost()}>delete post</button></div> */}
 					<div className={s.advert__content}>
 						<div className={s.message}>{message}</div>

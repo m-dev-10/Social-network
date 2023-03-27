@@ -55,7 +55,8 @@ const Profile = () => {
 	return (
 		<div className={s.profile}>
 			<ProfilePage status={status} profile={profile} likes={""} updateStatus={updateStatus} savePhoto={savePhoto} isOwner={!userId} />
-			<MyAdverts />
+			{/* {!userId && <MyAdverts profile={profile} />} */}
+			<MyAdverts profile={profile} />
 		</div>
 	)
 }
