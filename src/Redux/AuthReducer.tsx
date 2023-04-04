@@ -1,5 +1,5 @@
-import { authTypesAC } from "./ActionCreators"
-import { SET_USERS_DATA } from "./ActionTypes"
+import { authTypesAC, getCaptchaUrlTypesAC, } from "./ActionCreators"
+import { CAPTCHA_URL, SET_USERS_DATA } from "./ActionTypes"
 
 
 let initialState = {
@@ -7,13 +7,13 @@ let initialState = {
 	email: null,
 	login: null,
 	isAuth: false,
-	capchaUrl: null, // if null, then captcha is not required
+	captchaUrl: null, // if null, then captcha is not required
 }
 
 export type StateAuthReducer = typeof initialState
 
 
-export type AuthReducerActions = authTypesAC
+export type AuthReducerActions = authTypesAC | getCaptchaUrlTypesAC
 
 
 const AuthReducer = (State = initialState, action: AuthReducerActions) => {
@@ -23,7 +23,11 @@ const AuthReducer = (State = initialState, action: AuthReducerActions) => {
 			return {
 				...State,
 				...action.payload,
-
+			}
+		case CAPTCHA_URL:
+			return {
+				...State,
+				...action.payload,
 			}
 		default:
 			return State

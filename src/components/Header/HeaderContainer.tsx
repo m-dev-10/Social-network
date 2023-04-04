@@ -16,6 +16,8 @@ const HeaderContainer = () => {
 	const profile = useSelector((state: Store) => state.ProfilePage.profile)
 	const dispatch = useDispatch<Dispatch<any>>()
 	const authorizedUserId = useSelector((state: Store) => state.auth.id)
+	const myProfile = useSelector((state: Store) => state.ProfilePage.myProfile)
+
 
 	const unSubmit = () => {
 		console.log('start');
@@ -25,7 +27,7 @@ const HeaderContainer = () => {
 
 	return (
 		<header className={s.header}>
-			<Header profile={profile} unSubmit={unSubmit} isAuth={isAuth} authorizedUserId={authorizedUserId} />
+			<Header profile={profile} unSubmit={unSubmit} isAuth={isAuth} authorizedUserId={authorizedUserId} myProfile={myProfile} />
 		</header>
 	)
 }

@@ -19,9 +19,6 @@ const SideBar = () => {
 			<div className={`${s.item} ${s.item__users}`}>
 				<NavLink className={s.link} to="/users">Users</NavLink>
 			</div>
-			<div className={`${s.item} ${s.item__news}`}>
-				<NavLink className={s.link} to="/news">News</NavLink>
-			</div>
 			<div className={`${s.item} ${s.item__settings}`}>
 				<NavLink className={s.link} to="/settings">Settings</NavLink>
 			</div>

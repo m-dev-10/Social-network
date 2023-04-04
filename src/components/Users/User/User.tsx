@@ -18,7 +18,7 @@ interface Props {
 
 
 const User: FC<Props> = ({ user, followingInProgress, follow, unFollow }) => {
-	const dispatch = useDispatch<Dispatch<any>>()
+
 
 
 

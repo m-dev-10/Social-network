@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import { Dispatch } from "redux";
 import { setUsersProfileAC } from "../../Redux/ActionCreators";
 import store, { Store } from "../../Redux/redux-store";
-import { getProfileThunk, getStatusThunk, saveAvatarThunk, updateStatusThunk } from "../../Redux/ThunkCreators";
+import { getProfileThunk, getStatusThunk, saveAvatarThunk, saveProfileThunk, updateStatusThunk } from "../../Redux/ThunkCreators";
 import MyAdverts from "./MyAdverts/MyAdverts";
 import s from './Profile.module.scss'
 import ProfilePage from "./ProfilePage/ProfilePage";
@@ -34,18 +34,30 @@ const Profile = () => {
 			}
 			dispatch(getProfileThunk(userId))
 			dispatch(getStatusThunk(userId))
-		}, [status, userId]
+		}, [status, userId,]
 	)
 
 	const updateStatus = (status: string) => {
 		dispatch(updateStatusThunk(status))
 	}
 
-	const savePhoto = (e: any) => {
-		dispatch(saveAvatarThunk(e))
+	const savePhoto = (e: any, authorizedUserId: number) => {
+		dispatch(saveAvatarThunk(e, authorizedUserId))
 		console.log('ava2');
-
 	}
+
+	const savePhotoSelected = (e: any) => {
+		if (e.target.files.length) {
+			savePhoto(e.target.files[0], authorizedUserId)
+			console.log('ava1');
+		}
+	}
+
+	const saveProfileSelected = (profile: any) => {
+		console.log('data2')
+		dispatch(saveProfileThunk(profile, authorizedUserId))
+	}
+
 
 	if (!isAuth.isAuth) {
 		return <Navigate to="/login" />
@@ -54,7 +66,7 @@ const Profile = () => {
 
 	return (
 		<div className={s.profile}>
-			<ProfilePage status={status} profile={profile} likes={""} updateStatus={updateStatus} savePhoto={savePhoto} isOwner={!userId} />
+			<ProfilePage status={status} saveProfileSelected={saveProfileSelected} profile={profile} likes={""} updateStatus={updateStatus} savePhotoSelected={savePhotoSelected} isOwner={!userId} />
 			{/* {!userId && <MyAdverts profile={profile} />} */}
 			<MyAdverts profile={profile} />
 		</div>

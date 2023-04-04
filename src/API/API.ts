@@ -68,10 +68,10 @@ export const contentAPI = {
 	// 		// 	return response.data
 	// 		// })
 	// 	},
-	// 	saveProfile(profile) {
-	// 		console.log('put', profile);
-	// 		return instance.put(`profile`, profile)
-	// 	}
+	saveProfile(profile: any) {
+		console.log('data3', profile);
+		return instance.put(`profile`, profile)
+	}
 
 	// 	// .then(response => {
 	// 	// 	return response.data
@@ -92,9 +92,9 @@ export const authAPI = {
 	logout() {
 		return instance.delete(`auth/login`)
 	},
-	// getCaptcha() {
-	// 	return instance.get(`security/get-captcha-url`)
-	// }
+	getCaptcha() {
+		return instance.get(`security/get-captcha-url`)
+	}
 }
 
 

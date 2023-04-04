@@ -1,0 +1,10 @@
+.profileInfo {
+	color: rgba(51, 140, 228, 1);
+	& *:not(:last-child) {
+		margin-bottom: 25px;
+	}
+	span {
+		color: black;
+		font-weight: 600;
+	}
+}

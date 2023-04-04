@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
-import { updateStatusThunk } from "../../../Redux/ThunkCreators";
+import { updateStatusThunk } from "../../../../Redux/ThunkCreators";
 import s from './ProfileStatus.module.scss'
 
 interface Props {

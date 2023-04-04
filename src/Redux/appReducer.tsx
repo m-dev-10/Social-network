@@ -3,7 +3,8 @@ import { SET_INITIALIZED } from "./ActionTypes"
 
 
 let initialState = {
-	initialized: false
+	initialized: false,
+	// avatarMini: null
 }
 
 export type StateAppReducer = typeof initialState

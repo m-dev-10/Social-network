@@ -10,7 +10,11 @@ import {
 	SET_USERS_PROFILE,
 	SET_STATUS,
 	SET_INITIALIZED,
-	SAVE_AVATAR
+	SAVE_AVATAR,
+	CAPTCHA_URL,
+	SET_MY_PROFILE,
+	SAVE_PROFILE,
+
 } from "./ActionTypes"
 
 export type setStatusTypesAC = {
@@ -44,6 +48,16 @@ export const saveAvatarAC = (photos: any): saveAvatarTypesAC => {
 	return { type: SAVE_AVATAR, photos }
 }
 
+export type saveProfileTypesAC = {
+	type: typeof SAVE_PROFILE,
+	profile: any
+}
+
+
+export const saveProfileAC = (profile: any): saveProfileTypesAC => {
+	console.log('data5')
+	return { type: SAVE_PROFILE, profile }
+}
 
 
 export type addPostTypesAC = {
@@ -100,6 +114,28 @@ export type setUsersProfileTypesAC = {
 
 export const setUsersProfileAC = (profile: string | number | null): setUsersProfileTypesAC => {
 	return { type: SET_USERS_PROFILE, profile }
+}
+
+export type setMyProfileTypesAC = {
+	type: typeof SET_MY_PROFILE,
+	myProfile?: any
+}
+
+export const setMyProfileAC = (myProfile: any): setMyProfileTypesAC => {
+	return { type: SET_MY_PROFILE, myProfile }
+}
+
+
+export type getCaptchaUrlTypesAC = {
+	type: typeof CAPTCHA_URL,
+	payload: {
+		captchaUrl: string
+	}
+}
+
+
+export const getCaptchaUrlAC = (captchaUrl: string): getCaptchaUrlTypesAC => {
+	return { type: CAPTCHA_URL, payload: { captchaUrl } }
 }
 
 

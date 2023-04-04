@@ -1,3 +1,4 @@
+import axios, { AxiosResponse } from "axios"
 import React, { FC, FormEvent, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { useSelector } from "react-redux"
@@ -16,16 +17,18 @@ interface formTypes {
 	email: string
 	password: string
 	checkbox: boolean
+	captcha: string
 }
 
 
 const LoginForm = () => {
 
 	const auth = useSelector((state: Store) => state.auth)
-
+	const captchaUrl = useSelector((state: Store) => state.auth.captchaUrl)
 	// const [login, setLogin] = useState('')
 	// const [password, setPassword] = useState('')
 	// const [checkbox, setCheckbox] = useState(false)
+
 
 
 	const dispatch = useDispatch<Dispatch<any>>()
@@ -40,7 +43,8 @@ const LoginForm = () => {
 
 	const onSubmit: SubmitHandler<formTypes> = data => {
 		alert('send')
-		dispatch(loginThunk(data.email, data.password, data.checkbox))
+		// const url = "https://social-network.samuraijs.com/api/1.0/auth/login"
+		dispatch(loginThunk(data.email, data.password, data.checkbox, data.captcha,))
 		reset()
 	}
 
@@ -97,11 +101,11 @@ const LoginForm = () => {
 						})} id={"check"} type="checkbox" />
 					<label className={s.label} htmlFor={"check"}>Remember me</label>
 					{errors?.checkbox && (<div style={{ color: "red", fontSize: 16 }}>{errors.checkbox.message}</div>)}
-
 				</div>
-				{/* {props.captchaUrl && <img src={props.captchaUrl} />}
-			{props.captchaUrl && <Field placeholder="write symbols" name={"captcha"} component={Input} validate={[required, maxLengthCreator(30)]} />}
-			{props.error && <div className={s.errorForm}>{props.error}</div>} */}
+				{captchaUrl && <img src={captchaUrl} />}
+				{captchaUrl && <div><input className={s.captchaInput} {...register('captcha',
+				)} placeholder={"Write symbols..."} type={"text"} /></div>}
+				{/* {props.error && <div className={s.errorForm}>{props.error}</div>} */}
 				<FormButton text={"LOGIN"} />
 			</form>
 		</div>

@@ -1,6 +1,6 @@
 import { ProfileReducerActions } from './ProfileReducer';
 import { authAPI, contentAPI, usersAPI } from "../API/API"
-import { authAC, followSuccess, initializedAC, saveAvatarAC, setCurrentPage, setIsFetching, setStatusAC, setTotalUsersCount, setUsers, setUsersProfileAC, toggleIsFollowingProgress, unFollowSuccess, updateStatusAC } from "./ActionCreators"
+import { authAC, followSuccess, getCaptchaUrlAC, initializedAC, saveAvatarAC, saveProfileAC, setCurrentPage, setIsFetching, setMyProfileAC, setStatusAC, setTotalUsersCount, setUsers, setUsersProfileAC, toggleIsFollowingProgress, unFollowSuccess, updateStatusAC } from "./ActionCreators"
 import { AuthReducerActions } from "./AuthReducer"
 import { ActionT } from "./redux-types"
 import { UsersReducerActions } from "./UsersReducer"
@@ -17,19 +17,21 @@ export const authThunk = (): ActionT<AuthReducerActions> => async (dispatch) => 
 		// console.log('id, login, email ', id, login, response);
 		console.log('e', email, 'l', login);
 		dispatch(authAC(id, email, login, true))
+		dispatch(getProfileThunk(id, true))
+
 	}
 }
-export const loginThunk = (login: string, password: string, rememberMe: boolean): ActionT<AuthReducerActions> => async (dispatch) => {
+export const loginThunk = (login: string, password: string, rememberMe: boolean, captcha: any,): ActionT<AuthReducerActions> => async (dispatch) => {
 	console.log('thunk1');
-	let response = await authAPI.login(login, password, rememberMe)
+	let response = await authAPI.login(login, password, rememberMe, captcha)
 	console.log('error');
 	if (response.data.resultCode === 0) {
 		// let { id, login, email } = response.data.data
-		let id = response.data.data.userId
-		console.log('id, login, email ', id, login, password, response);
-		console.log("123", login);
-		//dispatch(authAC(id, "", login, true))
+		// let id = response.data.data.userId
 		dispatch(authThunk())
+	}
+	else if (response.data.resultCode === 10) {
+		dispatch(getCaptchaUrlTnunk())
 	}
 }
 export const logOutThunk = (): ActionT<AuthReducerActions> => async (dispatch) => {
@@ -41,6 +43,14 @@ export const logOutThunk = (): ActionT<AuthReducerActions> => async (dispatch) =
 		dispatch(authAC(null, null, null, false))
 	}
 }
+export const getCaptchaUrlTnunk = (): ActionT<AuthReducerActions> => async (dispatch) => {
+	let response = await authAPI.getCaptcha()
+	const captchaUrl = response.data.url
+	console.log(captchaUrl);
+	dispatch(getCaptchaUrlAC(captchaUrl))
+}
+
+
 
 
 //UsersThunk
@@ -81,10 +91,14 @@ export const unFollowThunk = (userId: number): ActionT<UsersReducerActions> => {
 
 // ProfileThunk
 
-export const getProfileThunk = (userId: number): ActionT<ProfileReducerActions> => {
+export const getProfileThunk = (userId: number, myProfile: boolean = false): ActionT<ProfileReducerActions> => {
 	return async (dispatch) => {
 		let data = await contentAPI.getProfile(userId)
+		console.log('saveProfile4');
 		dispatch(setUsersProfileAC(data))
+		if (myProfile) {
+			dispatch(setMyProfileAC(data))
+		}
 	}
 }
 
@@ -105,12 +119,23 @@ export const updateStatusThunk = (status: string): ActionT<ProfileReducerActions
 		}
 	}
 }
-export const saveAvatarThunk = (photoFile: string): ActionT<ProfileReducerActions> => {
+export const saveAvatarThunk = (photoFile: string, id: number): ActionT<ProfileReducerActions> => {
 	return async (dispatch) => {
 		let response = await contentAPI.savePhoto(photoFile)
 		if (response.data.resultCode === 0) {
 			console.log('ava5');
-			dispatch(saveAvatarAC(response.data.data.photos))
+			await dispatch(saveAvatarAC(response.data.data.photos))
+			console.log('55');
+			dispatch(getProfileThunk(id, true))
+		}
+	}
+}
+export const saveProfileThunk = (profile: any, userId: any): ActionT<ProfileReducerActions> => {
+	return async (dispatch) => {
+		let response = await contentAPI.saveProfile(profile)
+		console.log('data4')
+		if (response.data.resultCode === 0) {
+			dispatch(saveProfileAC(profile))
 		}
 	}
 }

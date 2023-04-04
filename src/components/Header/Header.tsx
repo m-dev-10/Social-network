@@ -15,9 +15,10 @@ interface Props {
 	profile?: any
 	unSubmit: () => void
 	authorizedUserId: number | null
+	myProfile: any
 }
 
-const Header: FC<Props> = ({ isAuth, unSubmit, profile, authorizedUserId }) => {
+const Header: FC<Props> = ({ isAuth, unSubmit, profile, authorizedUserId, myProfile }) => {
 
 	// const isAuth = useSelector((state: Store) => state.auth)
 
@@ -42,7 +43,7 @@ const Header: FC<Props> = ({ isAuth, unSubmit, profile, authorizedUserId }) => {
 					<img title={'Поиск...'} onClick={() => { alert('search...') }} className={s.searchIcon} src={searchIconWhite} alt="searchIcon" />
 				</div>
 				<div className={s.logout}>
-					{isAuth.isAuth ? <div><img className={s.headerImage} src={profile?.photos?.small ? profile?.photos?.small : userPhoto} alt="avatar" />{isAuth.login}<button className={s.button} onClick={unSubmit}>log out</button></div> : <NavLink to="/login"></NavLink>}
+					{isAuth.isAuth ? <div><img className={s.headerImage} src={myProfile?.photos?.small && myProfile?.photos?.small} alt="avatar" />{isAuth.login}<button className={s.button} onClick={unSubmit}>log out</button></div> : <NavLink to="/login"></NavLink>}
 				</div>
 			</div>
 
