@@ -5,26 +5,32 @@ import Preloader from "../../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfileInfoForm from "./ProfileInfo/ProfileInfoForm";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
+
 interface Props {
 	isOwner: boolean
 	profile?: any,
 	likes: string,
 	status: string
+	saveProfileThunk: any
+	authorizedUserId: number
 	updateStatus: (status: string) => void
 	savePhotoSelected: (e: any) => void
-	saveProfileSelected: (data: any) => void
 }
 
-const ProfilePage: FC<Props> = ({ profile, status, updateStatus, isOwner, savePhotoSelected, saveProfileSelected }) => {
+const ProfilePage: FC<Props> = ({ profile, status, updateStatus, isOwner, savePhotoSelected, saveProfileThunk, authorizedUserId }) => {
+	const dispatch = useDispatch<Dispatch<any>>()
 	const [editMode, setEditMode] = useState(false)
 
 	const goToEditMode = () => {
 		setEditMode(true)
 	}
 
-
-
-
+	const saveProfileSelected = (profile: any) => {
+		dispatch(saveProfileThunk(profile, authorizedUserId))
+		setEditMode(false)
+	}
 
 	if (!profile) {
 		return <Preloader />
@@ -40,8 +46,8 @@ const ProfilePage: FC<Props> = ({ profile, status, updateStatus, isOwner, savePh
 					</div>}</div>
 				</div>
 				<div className={s.profilePage__aboutMe}>
-					<div>{!editMode ? <ProfileInfo isOwner={isOwner} profile={profile} goToEditMode={() => setEditMode(true)} /> :
-						<ProfileInfoForm saveProfileSelected={saveProfileSelected} goToEditMode={() => setEditMode(true)} />}
+					<div>{!editMode ? <ProfileInfo isOwner={isOwner} profile={profile} goToEditMode={goToEditMode} /> :
+						<ProfileInfoForm saveProfileSelected={saveProfileSelected} />}
 					</div>
 					<div className={s.status}><ProfileStatus style={{ color: "red" }} isOwner={isOwner} status={status} updateStatus={updateStatus} /></div>
 				</div>
@@ -49,6 +55,5 @@ const ProfilePage: FC<Props> = ({ profile, status, updateStatus, isOwner, savePh
 		</div>
 	)
 }
-
 
 export default ProfilePage

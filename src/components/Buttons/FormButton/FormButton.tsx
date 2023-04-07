@@ -3,11 +3,6 @@ import s from './FormButton.module.scss'
 
 interface Props {
 	text: string
-
-	// callback: () => void
-	// color?: string
-	// disabled?: boolean
-
 }
 
 const FormButton: FC<Props> = ({ text }) => {

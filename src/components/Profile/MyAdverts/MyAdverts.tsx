@@ -12,11 +12,8 @@ interface Props {
 }
 
 const MyAdverts: FC<Props> = ({ profile }) => {
-
-	const [text, setText] = useState('')
-
 	const dispatch = useDispatch<Dispatch<any>>()
-
+	const [text, setText] = useState('')
 	const posts = useSelector((state: Store) => state.ProfilePage.PostsData)
 
 
@@ -39,7 +36,6 @@ const MyAdverts: FC<Props> = ({ profile }) => {
 		<div className={s.adverts}>
 			<div><textarea maxLength={80} value={text} onChange={(e) => setText(e.target.value)} className={s.input__advert} placeholder="Write message..." /></div>
 			<DefaultButton text={"Add post"} callback={createAddPost(text)} />
-			{/* <div><button onClick={() => addPost(text)} >add post</button></div> */}
 			{posts.map((ad) => <MyAdvert profile={profile} deletePost={createDeletePost(ad.id)} message={ad.message} likes={ad.likes} />)}
 
 		</div>
@@ -47,4 +43,4 @@ const MyAdverts: FC<Props> = ({ profile }) => {
 
 }
 
-export default MyAdverts
+export default React.memo(MyAdverts)

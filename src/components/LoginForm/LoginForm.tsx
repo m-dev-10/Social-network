@@ -1,17 +1,12 @@
-import axios, { AxiosResponse } from "axios"
-import React, { FC, FormEvent, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { Navigate } from "react-router-dom"
 import { Dispatch } from 'redux'
-import Redirect from "../../Redux/Redirect"
 import { Store } from "../../Redux/redux-store"
 import { loginThunk } from "../../Redux/ThunkCreators"
 import FormButton from "../Buttons/FormButton/FormButton"
 import s from './LoginForm.module.scss'
-// import { Store } from "../../Redux/redux-store";
-
 
 interface formTypes {
 	email: string
@@ -20,17 +15,9 @@ interface formTypes {
 	captcha: string
 }
 
-
 const LoginForm = () => {
-
 	const auth = useSelector((state: Store) => state.auth)
 	const captchaUrl = useSelector((state: Store) => state.auth.captchaUrl)
-	// const [login, setLogin] = useState('')
-	// const [password, setPassword] = useState('')
-	// const [checkbox, setCheckbox] = useState(false)
-
-
-
 	const dispatch = useDispatch<Dispatch<any>>()
 
 	const { register,
@@ -43,20 +30,9 @@ const LoginForm = () => {
 
 	const onSubmit: SubmitHandler<formTypes> = data => {
 		alert('send')
-		// const url = "https://social-network.samuraijs.com/api/1.0/auth/login"
 		dispatch(loginThunk(data.email, data.password, data.checkbox, data.captcha,))
 		reset()
 	}
-
-	// const submit = (e: FormEvent<HTMLFormElement>) => {
-	// 	e.preventDefault()
-	// 	console.log('start');
-	// 	dispatch(loginThunk(login, password, checkbox))
-	// 	console.log('end');
-	// 	setLogin('')
-	// 	setPassword('')
-	// 	setCheckbox(false)
-	// }onSubmit={submit}
 
 	if (auth.isAuth) {
 		return <Navigate to={"/profile"} />
@@ -105,12 +81,10 @@ const LoginForm = () => {
 				{captchaUrl && <img src={captchaUrl} />}
 				{captchaUrl && <div><input className={s.captchaInput} {...register('captcha',
 				)} placeholder={"Write symbols..."} type={"text"} /></div>}
-				{/* {props.error && <div className={s.errorForm}>{props.error}</div>} */}
 				<FormButton text={"LOGIN"} />
 			</form>
 		</div>
 	</div>
 }
-
 
 export default LoginForm

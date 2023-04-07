@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import s from './SideBar.module.scss'
 import arrowIconBlack from '../../assets/images/SideBarImages/arrowIconBlack.svg'
@@ -13,9 +13,9 @@ const SideBar = () => {
 			<div title={'Я профайл'} className={`${s.item} ${s.item__profile}`}>
 				<NavLink className={s.link} to="/profile">Profile</NavLink>
 			</div>
-			<div className={`${s.item} ${s.item__messages}`}>
+			{/* <div className={`${s.item} ${s.item__messages}`}>
 				<NavLink className={s.link} to="/dialogs">Messages</NavLink>
-			</div>
+			</div> */}
 			<div className={`${s.item} ${s.item__users}`}>
 				<NavLink className={s.link} to="/users">Users</NavLink>
 			</div>

@@ -18,31 +18,10 @@
 	position: relative;
 	&:hover {
 		transition: all 0.3s ease 0s;
-		// color: rgb(51, 140, 228);
 		background-color: white;
 	}
 	&:active {
 		box-shadow: 0 2px #666;
 		transform: translateY(2px);
-		// background-color: rgba(39, 206, 117, 0.3);
 	}
 }
-
-// .button:after {
-// 	content: "";
-// 	background: green;
-// 	display: block;
-// 	position: absolute;
-// 	padding-top: 40%;
-// 	padding-left: 100%;
-// 	bottom: 0;
-// 	opacity: 0;
-// 	transition: all 0.5s ease 0s;
-// }
-
-// .button:active:after {
-// 	padding: 0;
-// 	margin: 0;
-// 	opacity: 1;
-// 	transition: 0s;
-// }

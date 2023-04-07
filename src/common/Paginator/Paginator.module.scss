@@ -2,7 +2,6 @@
 	color: rgba(43, 60, 85, 1);
 	font-weight: 400;
 	cursor: pointer;
-	// margin-right: 3px;
 	&:hover {
 		color: rgb(16, 138, 154);
 	}
@@ -15,24 +14,6 @@
 }
 
 .selectedPage {
-	// border: 1px solid black;
 	font-weight: 700;
 	color: rgb(16, 138, 154);
 }
-
-// .paginationButton {
-// 	border: 2px solid #fff;
-// 	cursor: pointer;
-// 	background-color: #2b3c55;
-// 	color: #fff;
-// 	border-radius: 40%;
-// 	&:hover {
-// 		color: rgb(179, 161, 161);
-// 	}
-// 	&.rightButton {
-// 		margin-left: 5px;
-// 	}
-// 	&.leftButton {
-// 		margin-right: 5px;
-// 	}
-// }

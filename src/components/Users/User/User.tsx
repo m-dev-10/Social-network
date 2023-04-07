@@ -2,9 +2,6 @@ import React, { FC } from "react";
 import { IUser } from "../../../Types/IUser";
 import userPhoto from '../../../assets/images/Users/UserPhoto.jpg'
 import s from './User.module.scss'
-import { useDispatch } from "react-redux";
-import { Dispatch } from "redux";
-import { Store } from "../../../Redux/redux-store";
 import UserButton from "../../Buttons/UserButton/UserButton";
 import { NavLink } from "react-router-dom";
 
@@ -18,9 +15,6 @@ interface Props {
 
 
 const User: FC<Props> = ({ user, followingInProgress, follow, unFollow }) => {
-
-
-
 
 
 	return (

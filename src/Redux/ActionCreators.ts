@@ -17,45 +17,40 @@ import {
 
 } from "./ActionTypes"
 
+
+//PROFILE
 export type setStatusTypesAC = {
 	type: typeof SET_STATUS,
 	status: string
 }
-
-
 export const setStatusAC = (status: string): setStatusTypesAC => {
 	return { type: SET_STATUS, status }
 }
+
 
 export type updateStatusTypesAC = {
 	type: typeof SET_STATUS,
 	status: string
 }
-
-
 export const updateStatusAC = (status: string): updateStatusTypesAC => {
 	return { type: SET_STATUS, status }
 }
+
 
 export type saveAvatarTypesAC = {
 	type: typeof SAVE_AVATAR,
 	photos: any
 }
-
-
 export const saveAvatarAC = (photos: any): saveAvatarTypesAC => {
-	console.log('ava6');
 	return { type: SAVE_AVATAR, photos }
 }
+
 
 export type saveProfileTypesAC = {
 	type: typeof SAVE_PROFILE,
 	profile: any
 }
-
-
 export const saveProfileAC = (profile: any): saveProfileTypesAC => {
-	console.log('data5')
 	return { type: SAVE_PROFILE, profile }
 }
 
@@ -64,7 +59,6 @@ export type addPostTypesAC = {
 	type: typeof ADD_POST,
 	text: string,
 }
-
 export const addPostAC = (text: string): addPostTypesAC => {
 	return { type: ADD_POST, text }
 }
@@ -74,53 +68,34 @@ export type deletePostTypesAC = {
 	type: typeof DELETE_POST,
 	id: number,
 }
-
 export const deletePostAC = (id: number): deletePostTypesAC => {
 	return { type: DELETE_POST, id }
 }
+
 
 export type addMessageTypesAC = {
 	type: typeof ADD_MESSAGE,
 	id: number,
 	messageText: string
 }
-
-
 export const addMessageAC = (id: number, messageText: string): addMessageTypesAC => {
 	return { type: ADD_MESSAGE, id, messageText }
 }
 
 
-export type authTypesAC = {
-	type: typeof SET_USERS_DATA,
-	payload: {
-		id: number | null,
-		email: string | null,
-		login: string | null,
-		isAuth: boolean,
-	}
-}
-
-
-export const authAC = (id: number | null, email: string | null, login: string | null, isAuth: boolean): authTypesAC => {
-	console.log('thunk4');
-	return { type: SET_USERS_DATA, payload: { id, email, login, isAuth } }
-}
-
 export type setUsersProfileTypesAC = {
 	type: typeof SET_USERS_PROFILE,
 	profile?: string | number | null
 }
-
 export const setUsersProfileAC = (profile: string | number | null): setUsersProfileTypesAC => {
 	return { type: SET_USERS_PROFILE, profile }
 }
+
 
 export type setMyProfileTypesAC = {
 	type: typeof SET_MY_PROFILE,
 	myProfile?: any
 }
-
 export const setMyProfileAC = (myProfile: any): setMyProfileTypesAC => {
 	return { type: SET_MY_PROFILE, myProfile }
 }
@@ -132,28 +107,12 @@ export type getCaptchaUrlTypesAC = {
 		captchaUrl: string
 	}
 }
-
-
 export const getCaptchaUrlAC = (captchaUrl: string): getCaptchaUrlTypesAC => {
 	return { type: CAPTCHA_URL, payload: { captchaUrl } }
 }
 
 
-//UsersPage
-
-
-// export type UsersAC = {
-// 	type: typeof SET_USERS,
-// 	users: Array<IUser>
-// 	pageSize: num
-// 	totalUsersCount: 0,
-// 	currentPage: 1,
-// 	isFetching: false,
-// 	followingInProgress: [],
-// 	portionSize: 0
-// }
-
-
+//USERS
 export type setUsersAC = {
 	type: typeof SET_USERS,
 	users: Array<IUser>
@@ -171,6 +130,7 @@ export const followSuccess = (userId: number): followAC => {
 	return { type: FOLLOW, userId }
 }
 
+
 export type unfollowAC = {
 	type: typeof UNFOLLOW,
 	userId: number
@@ -178,6 +138,7 @@ export type unfollowAC = {
 export const unFollowSuccess = (userId: number): unfollowAC => {
 	return { type: UNFOLLOW, userId }
 }
+
 
 export type setTotalUsersCountAC = {
 	type: typeof SET_TOTAL_USERS_COUNT,
@@ -187,6 +148,7 @@ export const setTotalUsersCount = (totalUsersCount: number): setTotalUsersCountA
 	return { type: SET_TOTAL_USERS_COUNT, count: totalUsersCount }
 }
 
+
 export type setCurrentPageAC = {
 	type: typeof SET_CURRENT_PAGE,
 	currentPage: number
@@ -195,6 +157,7 @@ export const setCurrentPage = (currentPage: number): setCurrentPageAC => {
 	return { type: SET_CURRENT_PAGE, currentPage }
 }
 
+
 export type setIsFetchingAC = {
 	type: typeof TOGGLE_IS_FETCHING,
 	isFetching: boolean
@@ -202,6 +165,7 @@ export type setIsFetchingAC = {
 export const setIsFetching = (isFetching: boolean): setIsFetchingAC => {
 	return { type: TOGGLE_IS_FETCHING, isFetching }
 }
+
 
 export type toggleIsFollowingProgressAC = {
 	type: typeof TOGGLE_IS_FOLLOWING_PROGRESS,
@@ -212,12 +176,26 @@ export const toggleIsFollowingProgress = (isFetching: boolean, userId: number): 
 	return { type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId }
 }
 
-//app
 
+//APP
 export type initializedTypesAC = {
 	type: typeof SET_INITIALIZED
 }
-
 export const initializedAC = (): initializedTypesAC => {
 	return { type: SET_INITIALIZED }
+}
+
+
+//AUTH
+export type authTypesAC = {
+	type: typeof SET_USERS_DATA,
+	payload: {
+		id: number | null,
+		email: string | null,
+		login: string | null,
+		isAuth: boolean,
+	}
+}
+export const authAC = (id: number | null, email: string | null, login: string | null, isAuth: boolean): authTypesAC => {
+	return { type: SET_USERS_DATA, payload: { id, email, login, isAuth } }
 }

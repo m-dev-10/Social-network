@@ -13,26 +13,20 @@ interface formTypes {
 }
 
 interface Props {
-	// profile?: any,
-	goToEditMode: () => void
 	saveProfileSelected: (data: any) => void
 }
 
-
-const ProfileInfoForm: FC<Props> = ({ goToEditMode, saveProfileSelected }) => {
+const ProfileInfoForm: FC<Props> = ({ saveProfileSelected }) => {
 
 	const { register,
 		handleSubmit,
 		formState: { errors, },
-		reset
 	} = useForm<formTypes>({
 	})
 
 	const onSubmit: SubmitHandler<formTypes> = data => {
-		console.log('data1', data)
 		saveProfileSelected(data)
 	}
-
 
 
 	return (<div>
@@ -48,13 +42,10 @@ const ProfileInfoForm: FC<Props> = ({ goToEditMode, saveProfileSelected }) => {
 
 			<div><span>about me: </span><input {...register('aboutMe'
 			)} placeholder="about me" id={"aboutMe"} /></div>
-
-			<ProfileInfoButton callback={goToEditMode} text={"Save"} />
-			{/* <button type={"submit"} className={s.button}>Save</button> */}
+			<ProfileInfoButton text={"Save"} />
 		</form>
 	</div>)
 }
-
 
 
 export default ProfileInfoForm

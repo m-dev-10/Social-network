@@ -1,12 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Navigate, NavLink } from "react-router-dom";
-import { Store } from "../../Redux/redux-store";
+import { NavLink } from "react-router-dom";
 import s from './notFoundPage.module.scss'
 
 
 const NotFoundPage = () => {
-
 
 	return (
 		<div className={s.notFoundPage}>
@@ -20,6 +17,5 @@ const NotFoundPage = () => {
 		</div>
 	)
 }
-
 
 export default NotFoundPage

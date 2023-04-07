@@ -3,8 +3,7 @@ import s from './ProfileInfoButton.module.scss'
 
 interface Props {
 	text: string
-	callback: () => void
-	// onSubmit: () => void
+	callback?: () => void
 }
 
 const ProfileInfoButton: FC<Props> = ({ text, callback }) => {

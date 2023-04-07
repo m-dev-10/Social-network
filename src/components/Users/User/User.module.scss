@@ -3,7 +3,6 @@
 	display: flex;
 	flex: 0 1 50%;
 	font-size: 15px;
-
 	column-gap: 15px;
 }
 
@@ -29,7 +28,4 @@
 		color: rgb(88, 88, 236);
 		font-weight: 700;
 	}
-	// & *:not(:last-child) {
-	// 	margin-bottom: 10px;
-	// }
 }

@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import { setAuthUsersData } from '../Redux/AuthReducer';
 
 const instance = axios.create({
 	withCredentials: true,
@@ -19,20 +18,16 @@ export const usersAPI = {
 		})
 	},
 	follow(userId: number) {
-		console.log('подписаться')
 		return instance.post(`follow/${userId}`,
 		)
-
 	},
 	unFollow(userId: number) {
-		console.log('отписаться')
 		return instance.delete(`follow/${userId}`,
 		)
 	}
 }
 
 export const contentAPI = {
-
 	getProfile(userId: number) {
 		return instance.get(`profile/` + userId)
 			.then(response => {
@@ -40,44 +35,29 @@ export const contentAPI = {
 			})
 	},
 	getStatus(userId: number) {
-		console.log('get API');
 		return instance.get(`profile/status/` + userId)
 			.then(response => {
 				return response
 			})
 	},
 	updateStatus(status: string) {
-		console.log('update API');
 		return instance.put(`profile/status/`, { status: status })
 			.then(response => {
-				console.log(response);
 				return response
 			})
 	},
 	savePhoto(photoFile: any) {
 		let formData = new FormData()
 		formData.append("image", photoFile)
-		console.log('ava4');
 		return instance.put(`profile/photo`, formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
 		})
 	},
-	// 		// .then(response => {
-	// 		// 	return response.data
-	// 		// })
-	// 	},
 	saveProfile(profile: any) {
-		console.log('data3', profile);
 		return instance.put(`profile`, profile)
 	}
-
-	// 	// .then(response => {
-	// 	// 	return response.data
-	// 	// })
-	// }
-
 }
 
 //LoginForm
@@ -86,7 +66,6 @@ export const authAPI = {
 		return instance.get(`auth/me`)
 	},
 	login(email: string, password: string, rememberMe = false, captcha = null) {
-		console.log('thunk2')
 		return instance.post(`auth/login`, { email, password, rememberMe, captcha })
 	},
 	logout() {
@@ -97,9 +76,3 @@ export const authAPI = {
 	}
 }
 
-
-// export const securityAPI = {
-// 	getCaptcha() {
-// 		return instance.get(`security/get-captcha-url`)
-// 	}
-// }

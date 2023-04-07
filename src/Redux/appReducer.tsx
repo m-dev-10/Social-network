@@ -1,14 +1,12 @@
-import { authTypesAC, initializedTypesAC } from "./ActionCreators"
+import { initializedTypesAC } from "./ActionCreators"
 import { SET_INITIALIZED } from "./ActionTypes"
 
 
 let initialState = {
 	initialized: false,
-	// avatarMini: null
 }
 
 export type StateAppReducer = typeof initialState
-
 
 export type appReducerActions = initializedTypesAC
 

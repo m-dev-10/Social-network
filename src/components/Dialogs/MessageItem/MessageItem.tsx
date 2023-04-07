@@ -5,8 +5,6 @@ import s from './MessageItem.module.scss'
 
 interface Props {
 	message: string,
-	// id: number,
-	// deletePost: () => void
 }
 
 

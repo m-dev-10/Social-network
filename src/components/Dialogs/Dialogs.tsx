@@ -3,15 +3,12 @@ import s from './Dialogs.module.scss'
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { Dispatch } from 'redux'
 import { Store } from "../../Redux/redux-store";
 import { Navigate } from "react-router-dom";
 
 
 
 const Dialogs = () => {
-	const dispatch = useDispatch<Dispatch<any>>()
 	const isAuth = useSelector((state: Store) => state.auth)
 	const dialogsData = useSelector((state: Store) => state.DialogsPage.DialogsData)
 	const messagesData = useSelector((state: Store) => state.DialogsPage.MessagesData)

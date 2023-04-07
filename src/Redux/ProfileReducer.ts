@@ -1,12 +1,5 @@
-import { profile } from "console";
-import { addPostTypesAC, deletePostAC, deletePostTypesAC, setStatusTypesAC, setUsersProfileTypesAC, updateStatusTypesAC, saveAvatarTypesAC, setMyProfileTypesAC, saveProfileTypesAC } from "./ActionCreators";
+import { addPostTypesAC, deletePostTypesAC, setStatusTypesAC, setUsersProfileTypesAC, updateStatusTypesAC, saveAvatarTypesAC, setMyProfileTypesAC, saveProfileTypesAC } from "./ActionCreators";
 import { ADD_POST, DELETE_POST, SAVE_AVATAR, SAVE_PROFILE, SET_MY_PROFILE, SET_STATUS, SET_USERS_PROFILE } from "./ActionTypes";
-
-// const SET_USERS_PROFILE = "SET_USERS_PROFILE"
-// const SET_STATUS = "SET_STATUS"
-// const DELETE_POST = "DELETE_POST"
-// const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS"
-// const ADD_ERROR = "ADD_ERROR"
 
 
 let initialState = {
@@ -54,21 +47,16 @@ const ProfileReducer = (state = initialState, action: ProfileReducerActions) => 
 			return { ...state, profile: action.profile }
 		}
 		case SET_STATUS: {
-			console.log('reducer');
 			return { ...state, status: action.status }
 		}
 		case SET_MY_PROFILE: {
-			console.log(action.myProfile);
-			console.log('SET_MY_PROFILE');
 			return { ...state, myProfile: action.myProfile }
 		}
 		case SAVE_AVATAR:
-			console.log('ava7')
 			return {
 				...state, profile: { ...state.profile, photos: action.photos }
 			}
 		case SAVE_PROFILE:
-			console.log('data6')
 			return {
 				...state, profile: action.profile
 			}

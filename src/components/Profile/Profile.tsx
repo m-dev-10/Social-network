@@ -3,20 +3,17 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { Dispatch } from "redux";
-import { setUsersProfileAC } from "../../Redux/ActionCreators";
-import store, { Store } from "../../Redux/redux-store";
+import { Store } from "../../Redux/redux-store";
 import { getProfileThunk, getStatusThunk, saveAvatarThunk, saveProfileThunk, updateStatusThunk } from "../../Redux/ThunkCreators";
 import MyAdverts from "./MyAdverts/MyAdverts";
 import s from './Profile.module.scss'
 import ProfilePage from "./ProfilePage/ProfilePage";
 import { useParams } from 'react-router-dom';
-// import { useHistory } from "react-router";
-
 
 
 
 const Profile = () => {
-	// const hist = useHistory()
+
 	const isAuth = useSelector((state: Store) => state.auth)
 	const profile = useSelector((state: Store) => state.ProfilePage.profile)
 	const status = useSelector((state: Store) => state.ProfilePage.status)
@@ -24,6 +21,7 @@ const Profile = () => {
 	const dispatch = useDispatch<Dispatch<any>>()
 	const params = useParams();
 	const current = params.userId;
+	const myProfile = useSelector((state: Store) => state.ProfilePage.myProfile)
 	let userId = Number(current);
 
 
@@ -40,35 +38,23 @@ const Profile = () => {
 	const updateStatus = (status: string) => {
 		dispatch(updateStatusThunk(status))
 	}
-
 	const savePhoto = (e: any, authorizedUserId: number) => {
 		dispatch(saveAvatarThunk(e, authorizedUserId))
-		console.log('ava2');
 	}
-
 	const savePhotoSelected = (e: any) => {
 		if (e.target.files.length) {
 			savePhoto(e.target.files[0], authorizedUserId)
-			console.log('ava1');
 		}
 	}
-
-	const saveProfileSelected = (profile: any) => {
-		console.log('data2')
-		dispatch(saveProfileThunk(profile, authorizedUserId))
-	}
-
 
 	if (!isAuth.isAuth) {
 		return <Navigate to="/login" />
 	}
 
-
 	return (
 		<div className={s.profile}>
-			<ProfilePage status={status} saveProfileSelected={saveProfileSelected} profile={profile} likes={""} updateStatus={updateStatus} savePhotoSelected={savePhotoSelected} isOwner={!userId} />
-			{/* {!userId && <MyAdverts profile={profile} />} */}
-			<MyAdverts profile={profile} />
+			<ProfilePage status={status} authorizedUserId={authorizedUserId} saveProfileThunk={saveProfileThunk} profile={profile} likes={""} updateStatus={updateStatus} savePhotoSelected={savePhotoSelected} isOwner={!userId} />
+			<MyAdverts profile={myProfile} />
 		</div>
 	)
 }

@@ -13,7 +13,6 @@ interface Props {
 
 const MyAdvert: FC<Props> = ({ message, likes, deletePost, profile }) => {
 
-
 	const [like, setLike] = useState(false)
 	const [dislike, setDislike] = useState(false)
 	const [localLike, setLocalLike] = useState(Number(likes))
@@ -26,7 +25,6 @@ const MyAdvert: FC<Props> = ({ message, likes, deletePost, profile }) => {
 		else {
 			setLocalLike(prev => prev + 1)
 		}
-
 		setLike(prev => !prev)
 	}
 
@@ -37,7 +35,6 @@ const MyAdvert: FC<Props> = ({ message, likes, deletePost, profile }) => {
 		else {
 			setLocalDislike(prev => prev + 1)
 		}
-
 		setDislike(prev => !prev)
 	}
 
@@ -48,7 +45,6 @@ const MyAdvert: FC<Props> = ({ message, likes, deletePost, profile }) => {
 			<div className={s.advert__container}>
 				<div className={s.advert__Item}>
 					<div className={s.advert__picture}>	<img className={s.advert__avatar} src={profile?.photos?.small && profile?.photos?.small} alt="advertAvatar" /></div>
-					{/* <div><button onClick={() => deletePost()}>delete post</button></div> */}
 					<div className={s.advert__content}>
 						<div className={s.message}>{message}</div>
 						<div><img onClick={setLikeWrapper} className={`${s.iconLike} ${like ? s.iconLikeActive : ''}`} src={iconLike} alt="" /> Likes: {localLike}</div>
