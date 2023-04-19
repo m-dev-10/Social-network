@@ -8,7 +8,6 @@ interface Props {
 	style: any
 }
 
-
 const ProfileStatus: FC<Props> = ({ status, updateStatus, style, isOwner }) => {
 	const [editMode, setEditMode] = useState(false)
 	const [localStatus, setLocalStatus] = useState(status)

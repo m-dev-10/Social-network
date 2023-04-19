@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ProfileInfoButton from "../../../Buttons/ProfileButton/ProfileInfoButton";
 import s from './ProfileInfoForm.module.scss'
@@ -7,17 +7,17 @@ import s from './ProfileInfoForm.module.scss'
 interface formTypes {
 	fullName: string
 	lookingForAJob: boolean
-	LookingForAJobDescription: string
+	lookingForAJobDescription?: string
 	aboutMe: string
-	saveProfileSelected: (fullName: string, lookingForAJob: boolean, LookingForAJobDescription: string, aboutMe: string) => void
 }
 
 interface Props {
 	saveProfileSelected: (data: any) => void
+	profile: any
 }
 
-const ProfileInfoForm: FC<Props> = ({ saveProfileSelected }) => {
-
+const ProfileInfoForm: FC<Props> = ({ saveProfileSelected, profile }) => {
+	const [localDataJob, setLocalDataJob] = useState()
 	const { register,
 		handleSubmit,
 		formState: { errors, },
@@ -32,16 +32,19 @@ const ProfileInfoForm: FC<Props> = ({ saveProfileSelected }) => {
 	return (<div>
 		<form onSubmit={handleSubmit(onSubmit)} className={s.profileInfoForm}>
 			<div><span>name: </span><input {...register('fullName'
-			)} placeholder="name" id={"fullName"} /></div>
+			)} placeholder="name" defaultValue={profile.fullName} id={"fullName"} /></div>
 
-			<div><span>lookingForAJob: </span><input {...register('lookingForAJob'
-			)} type={"checkbox"} id={"lookingForAJob"} /></div>
+			<div><span>lookingForAJob: </span>
+				<input  {...register('lookingForAJob'
+				)} type={"checkbox"} id={"lookingForAJob"} /></div>
 
-			<div><span>LookingForAJobDescription: </span><input {...register('LookingForAJobDescription'
-			)} placeholder="LookingForAJobDescription" id={"LookingForAJobDescription"} /></div>
+			<div><span>LookingForAJobDescription: </span>
+				<input  {...register('lookingForAJobDescription'
+				)} placeholder="LookingForAJobDescription" defaultValue={profile.lookingForAJobDescription} id={"LookingForAJobDescription"} /></div>
 
-			<div><span>about me: </span><input {...register('aboutMe'
-			)} placeholder="about me" id={"aboutMe"} /></div>
+			<div><span>about me: </span>
+				<input  {...register('aboutMe'
+				)} placeholder="about me" id={"aboutMe"} defaultValue={profile.aboutMe} /></div>
 			<ProfileInfoButton text={"Save"} />
 		</form>
 	</div>)

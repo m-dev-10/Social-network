@@ -13,7 +13,10 @@
 	min-height: 100px;
 	align-items: center;
 	position: relative;
+	padding: 5px 15px;
+	flex-wrap: wrap;
 }
+
 .logo {
 	padding-left: 240px;
 }
@@ -60,6 +63,7 @@
 .input::placeholder {
 	color: white;
 	opacity: 0.7;
+	font-size: 14px;
 }
 
 .input:focus::placeholder {
@@ -76,7 +80,6 @@
 }
 
 .button {
-	// margin-left: 50px;
 	font-weight: 700;
 	min-width: 60px;
 	background-color: #fff;
@@ -107,12 +110,4 @@
 	width: 25px;
 	height: 25px;
 	border-radius: 50%;
-}
-@media (max-width: 1050px) {
-}
-
-@media (max-width: 991.98px) {
-}
-
-@media (max-width: 767.98px) {
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -23,7 +23,7 @@ const Profile = () => {
 	const current = params.userId;
 	const myProfile = useSelector((state: Store) => state.ProfilePage.myProfile)
 	let userId = Number(current);
-
+	const [editMode, setEditMode] = useState(false)
 
 	useEffect(
 		() => {
@@ -34,6 +34,7 @@ const Profile = () => {
 			dispatch(getStatusThunk(userId))
 		}, [status, userId,]
 	)
+
 
 	const updateStatus = (status: string) => {
 		dispatch(updateStatusThunk(status))
@@ -47,13 +48,22 @@ const Profile = () => {
 		}
 	}
 
+	const goToEditMode = () => {
+		setEditMode(true)
+	}
+
+	const saveProfileSelected = (profile: any) => {
+		dispatch(saveProfileThunk(profile))
+		setEditMode(false)
+	}
+
 	if (!isAuth.isAuth) {
 		return <Navigate to="/login" />
 	}
 
 	return (
 		<div className={s.profile}>
-			<ProfilePage status={status} authorizedUserId={authorizedUserId} saveProfileThunk={saveProfileThunk} profile={profile} likes={""} updateStatus={updateStatus} savePhotoSelected={savePhotoSelected} isOwner={!userId} />
+			<ProfilePage status={status} editMode={editMode} goToEditMode={goToEditMode} saveProfileSelected={saveProfileSelected} profile={profile} likes={""} updateStatus={updateStatus} savePhotoSelected={savePhotoSelected} isOwner={!userId} />
 			<MyAdverts profile={myProfile} />
 		</div>
 	)

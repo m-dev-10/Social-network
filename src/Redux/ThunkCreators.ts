@@ -1,6 +1,6 @@
 import { ProfileReducerActions } from './ProfileReducer';
 import { authAPI, contentAPI, usersAPI } from "../API/API"
-import { authAC, followSuccess, getCaptchaUrlAC, initializedAC, saveAvatarAC, setCurrentPage, setIsFetching, setMyProfileAC, setStatusAC, setTotalUsersCount, setUsers, setUsersProfileAC, toggleIsFollowingProgress, unFollowSuccess, updateStatusAC } from "./ActionCreators"
+import { authAC, followSuccess, getCaptchaUrlAC, initializedAC, saveAvatarAC, saveProfileAC, setCurrentPage, setIsFetching, setMyProfileAC, setStatusAC, setTotalUsersCount, setUsers, setUsersProfileAC, toggleIsFollowingProgress, unFollowSuccess, updateStatusAC } from "./ActionCreators"
 import { AuthReducerActions } from "./AuthReducer"
 import { ActionT } from "./redux-types"
 import { UsersReducerActions } from "./UsersReducer"
@@ -111,11 +111,12 @@ export const saveAvatarThunk = (photoFile: string, id: number): ActionT<ProfileR
 	}
 }
 
-export const saveProfileThunk = (profile: any, userId: any): ActionT<ProfileReducerActions> => {
+export const saveProfileThunk = (profile: any): ActionT<ProfileReducerActions> => {
 	return async (dispatch) => {
 		let response = await contentAPI.saveProfile(profile)
 		if (response.data.resultCode === 0) {
-			dispatch(getProfileThunk(profile))
+			dispatch(saveProfileAC(profile))
+			// dispatch(getProfileThunk(profile))
 		}
 	}
 }

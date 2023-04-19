@@ -39,7 +39,7 @@ const Users = () => {
 		<div className={s.users__container}>
 			{isFetching ? <Preloader /> : null}
 			<div><Paginator portionSize={portionSize} currentPage={currentPage} totalItemsCount={totalItemsCount} pageSize={pageSize} /></div>
-			<div className={s.usersList}>{Users.map((u) => <User followingInProgress={followingInProgress} user={u} follow={follow} unFollow={unFollow} />)}</div>
+			<div className={s.usersList}>{Users.map((u) => <User key={u.id} followingInProgress={followingInProgress} user={u} follow={follow} unFollow={unFollow} />)}</div>
 		</div>
 	)
 }

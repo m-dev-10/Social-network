@@ -15,8 +15,6 @@ interface Props {
 
 
 const User: FC<Props> = ({ user, followingInProgress, follow, unFollow }) => {
-
-
 	return (
 		<div className={s.user} >
 			<div className={s.userPhoto} >

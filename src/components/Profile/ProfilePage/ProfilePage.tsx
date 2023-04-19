@@ -1,36 +1,25 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import s from './ProfilePage.module.scss'
 import userPhoto from '../../../assets/images/Users/UserPhoto.jpg'
 import Preloader from "../../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ProfileInfoForm from "./ProfileInfo/ProfileInfoForm";
-import { useDispatch } from "react-redux";
-import { Dispatch } from "redux";
+
 
 interface Props {
 	isOwner: boolean
 	profile?: any,
 	likes: string,
 	status: string
-	saveProfileThunk: any
-	authorizedUserId: number
+	editMode: boolean
 	updateStatus: (status: string) => void
 	savePhotoSelected: (e: any) => void
+	saveProfileSelected: (data: any) => void
+	goToEditMode: () => void
 }
 
-const ProfilePage: FC<Props> = ({ profile, status, updateStatus, isOwner, savePhotoSelected, saveProfileThunk, authorizedUserId }) => {
-	const dispatch = useDispatch<Dispatch<any>>()
-	const [editMode, setEditMode] = useState(false)
-
-	const goToEditMode = () => {
-		setEditMode(true)
-	}
-
-	const saveProfileSelected = (profile: any) => {
-		dispatch(saveProfileThunk(profile, authorizedUserId))
-		setEditMode(false)
-	}
+const ProfilePage: FC<Props> = ({ profile, status, updateStatus, isOwner, savePhotoSelected, goToEditMode, saveProfileSelected, editMode }) => {
 
 	if (!profile) {
 		return <Preloader />
@@ -47,7 +36,7 @@ const ProfilePage: FC<Props> = ({ profile, status, updateStatus, isOwner, savePh
 				</div>
 				<div className={s.profilePage__aboutMe}>
 					<div>{!editMode ? <ProfileInfo isOwner={isOwner} profile={profile} goToEditMode={goToEditMode} /> :
-						<ProfileInfoForm saveProfileSelected={saveProfileSelected} />}
+						<ProfileInfoForm saveProfileSelected={saveProfileSelected} profile={profile} />}
 					</div>
 					<div className={s.status}><ProfileStatus style={{ color: "red" }} isOwner={isOwner} status={status} updateStatus={updateStatus} /></div>
 				</div>

@@ -58,7 +58,8 @@ const ProfileReducer = (state = initialState, action: ProfileReducerActions) => 
 			}
 		case SAVE_PROFILE:
 			return {
-				...state, profile: action.profile
+				// ...state, profile: action.profile
+				...state, profile: { ...state.profile, fullName: action.profile.fullName, lookingForAJob: action.profile.lookingForAJob, lookingForAJobDescription: action.profile.lookingForAJobDescription, aboutMe: action.profile.aboutMe }
 			}
 
 		default:

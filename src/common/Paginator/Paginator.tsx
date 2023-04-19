@@ -37,7 +37,7 @@ const Paginator: FC<Props> = ({ portionSize = 10, currentPage, totalItemsCount, 
 		{pages
 			.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
 			.map((p) => {
-				return <span
+				return <span key={p}
 					onClick={(e) => dispatch(setCurrentPage(p))}
 					className={cn({
 						[s.selectedPage]: currentPage === p

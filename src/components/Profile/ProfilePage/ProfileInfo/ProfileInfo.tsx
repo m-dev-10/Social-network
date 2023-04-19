@@ -15,7 +15,7 @@ const ProfileInfo: FC<Props> = ({ profile, isOwner, goToEditMode }) => {
 		<div className={s.profileInfo}>
 			<div><span>name:</span> {profile.fullName}</div>
 			<div><span>lookingForAJob:</span> {profile.lookingForAJob ? "yes" : "no"}</div>
-			<div><span>LookingForAJobDescription:</span> {profile.LookingForAJobDescription ? "yes" : "no"}</div>
+			<div><span>LookingForAJobDescription:</span> {profile.lookingForAJobDescription ? "yes" : '---'}</div>
 			<div><span>aboutMe:</span> {profile.aboutMe ? profile.aboutMe : '---'}</div>
 			{isOwner && <ProfileInfoButton callback={goToEditMode} text={"Edit profile"} />}
 		</div>

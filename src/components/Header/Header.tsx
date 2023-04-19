@@ -12,11 +12,12 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ isAuth, unSubmit, myProfile }) => {
+	// console.log('header');
 
 	return (
 		<header className={s.header}>
 			<div className={s.container}>
-				<a className={s.logo} href=''><img className={s.logoImage} src={logo} alt="logo" /></a>
+				<div><a className={s.logo} href=''><img className={s.logoImage} src={logo} alt="logo" /></a></div>
 				<div className={s.search}>
 					<input placeholder="Enter your search phrase..." className={s.input} type="text" />
 					<img title={'Поиск...'} onClick={() => { alert('search...') }} className={s.searchIcon} src={searchIconWhite} alt="searchIcon" />
